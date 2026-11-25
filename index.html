@@ -318,6 +318,8 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
 .rwd-note{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(139,92,246,.12);border:1px solid #533f99;color:#c4b5fd;font:700 13px/1.7 var(--ui);text-align:center}
 .rwd-note.on{background:rgba(74,222,128,.1);border-color:#2f7a4a;color:#86efac}
 .ab-pill.loan{color:#86efac;background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.4)}
+.fld.codein{text-align:center;text-transform:uppercase;letter-spacing:.16em;font-size:18px}
+.rare-tag.sec{background:linear-gradient(90deg,#38bdf8,#6366f1);color:#fff;box-shadow:0 2px 8px rgba(99,102,241,.45)}
 </style>
 </head>
 <body>
@@ -404,6 +406,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
         <span class="cta">اضغط للبدء</span>
         <button class="btn gold openShop" type="button">المتجر</button>
         <button class="btn openRank" type="button">الترتيب العالمي</button>
+        <button class="btn openCode" type="button">إدخال الكود</button>
       </div>
     </div>
   </div>
@@ -422,6 +425,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
         <span class="cta">اضغط للعب من جديد</span>
         <button class="btn gold openShop" type="button">المتجر</button>
         <button class="btn openRank" type="button">الترتيب العالمي</button>
+        <button class="btn openCode" type="button">إدخال الكود</button>
       </div>
     </div>
   </div>
@@ -441,6 +445,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
         <button id="tabRew" class="tab" type="button" role="tab">الجوائز <span id="invN"></span></button>
         <button id="tabRank" class="tab" type="button" role="tab">الترتيب</button>
         <button id="tabAcc" class="tab" type="button" role="tab">حسابي</button>
+        <button id="tabCode" class="tab" type="button" role="tab">إدخال الكود</button>
       </div>
       <div id="shopBody" class="sh-body"></div>
     </div>
@@ -647,7 +652,7 @@ var gemBanner=$('gemBanner'), gemBannerIco=$('gemBannerIco'), gemBannerBadge=$('
 var ovReady=$('ovReady'), ovOver=$('ovOver'), overScore=$('overScore'), overHi=$('overHi'), overShelf=$('overShelf');
 var overUnlock=$('overUnlock'), overHint=$('overHint');
 var sndBtn=$('snd'), fsBtn=$('fs');
-var tabRank=$('tabRank'), tabAcc=$('tabAcc'), accBtn=$('accBtn');
+var tabRank=$('tabRank'), tabAcc=$('tabAcc'), tabCode=$('tabCode'), accBtn=$('accBtn');
 var shopEl=$('shop'), shopBody=$('shopBody'), tabChars=$('tabChars'), tabRew=$('tabRew'), invN=$('invN'), balN=$('balN'), balPill=$('balPill');
 var unlockModal=$('unlockModal'), unlockCard=$('unlockCard'), unlockBadge=$('unlockBadge'), unlockPrev=$('unlockPrev'), unlockName=$('unlockName'), unlockAb=$('unlockAb'), unlockDesc=$('unlockDesc'), unlockOk=$('unlockOk');
 var fxLayer=$('fxLayer');
@@ -656,6 +661,11 @@ try{ reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catc
 
 /* ---------- Icons ---------- */
 var IC={
+  ghost:'<path d="M5 21V11a7 7 0 0 1 14 0v10l-3-2-2 2-2-2-2 2-2-2-3 2z"/><circle cx="9.5" cy="11" r="1"/><circle cx="14.5" cy="11" r="1"/>',
+  rocket:'<path d="M12 2c3 2.5 4.5 6 4.5 10l-2 3h-5l-2-3c0-4 1.5-7.5 4.5-10z"/><circle cx="12" cy="9" r="1.6"/><path d="M9.5 15l-2.5 4M14.5 15l2.5 4M12 15v5"/>',
+  hammer:'<path d="M14 4l6 6-3 3-6-6 3-3z"/><path d="M11 7L4 14l3 3 7-7M5 19l-2 2"/>',
+  shrink:'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>',
+  heart:'<path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/>',
   gift:'<rect x="3.5" y="10" width="17" height="10.5" rx="1.5"/><rect x="2.5" y="6.5" width="19" height="3.5" rx="1.2"/><path d="M12 6.5v14"/><path d="M12 6.5C10.5 3 6.8 3.5 7.2 5.4 7.5 6.6 10 6.5 12 6.5zm0 0c1.5-3.5 5.2-3 4.8-1.1C16.5 6.6 14 6.5 12 6.5z"/>',
   trophy:'<path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4v1a4 4 0 0 0 4 4M17 6h3v1a4 4 0 0 1-4 4"/><path d="M12 14v4M8 21h8M9 18h6"/>',
   star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3z"/>',
@@ -858,8 +868,43 @@ var CHARS=[
   {id:'shadow',name:'الظل الأسطوري',desc:'عباءة الظلام والعيون المتوهجة',price:3000,req:20000},
   {id:'falcon',name:'الصقر الذهبي',desc:'أجنحة ذهبية تمنح قفزة إضافية في الهواء',price:0,gems:150,req:0,rare:true,ability:'doubleJump',abLabel:'قدرة: قفز مزدوج في الهواء'},
   {id:'skyknight',name:'فارس السماء',desc:'يطير عالياً فوق العوائق لمدة 10 ثوانٍ',price:0,gems:150,req:0,rare:true,ability:'fly',abLabel:'قدرة: طيران 10ث • شحن 40ث'},
-  {id:'immortal',name:'الدرع الخالد',desc:'مناعة مطلقة تحطم العوائق لمدة 10 ثوانٍ',price:0,gems:150,req:0,rare:true,ability:'immortal',abLabel:'قدرة: لا يموت 10ث • شحن 40ث'}
+  {id:'immortal',name:'الدرع الخالد',desc:'مناعة مطلقة تحطم العوائق لمدة 10 ثوانٍ',price:0,gems:150,req:0,rare:true,ability:'immortal',abLabel:'قدرة: لا يموت 10ث • شحن 40ث'},
+  /* ===== سكنات سرية: لا تظهر في المتجر إلا بعد تفعيل كودها ===== */
+  {id:'spring',name:'الزنبرك',desc:'قدماه كالنوابض، يقفز ثلاث مرات',price:0,req:0,secret:true,ability:'tripleJump',abLabel:'قدرة: قفز ثلاثي في الهواء'},
+  {id:'glider',name:'المظلّي',desc:'مظلة تسمح له بالانزلاق ببطء في الهواء',price:0,req:0,secret:true,ability:'glide',abLabel:'قدرة: انزلاق (اضغط مطولاً في الهواء)'},
+  {id:'angel',name:'الملاك الحارس',desc:'ينقذك من الموت مرة واحدة في كل جولة',price:0,req:0,secret:true,ability:'lifesaver',abLabel:'قدرة: فرصة ثانية (مرة كل جولة)'},
+  {id:'merchant',name:'التاجر',desc:'حقيبته مليئة بالحظ: جوهرة T إضافية كل جوهرتين',price:0,req:0,secret:true,ability:'gemBonus',abLabel:'قدرة: جواهر T إضافية'},
+  {id:'timelord',name:'سيد الزمن',desc:'يبطئ العالم من حوله لمدة 8 ثوانٍ',price:0,req:0,secret:true,ability:'slowmo',abLabel:'قدرة: إبطاء الزمن 8ث • شحن 35ث'},
+  {id:'tycoon',name:'الثري',desc:'يضاعف نقاطك لمدة 10 ثوانٍ',price:0,req:0,secret:true,ability:'score2',abLabel:'قدرة: نقاط ×2 لمدة 10ث • شحن 35ث'},
+  {id:'mini',name:'القزم الخفي',desc:'يصغر حجمه فيصعب لمسه',price:0,req:0,secret:true,ability:'shrink',abLabel:'قدرة: تصغير 10ث • شحن 30ث'},
+  {id:'rocket',name:'الصاروخ',desc:'قفزته التالية تصل إلى ارتفاع خارق',price:0,req:0,secret:true,ability:'superJump',abLabel:'قدرة: قفزة خارقة • شحن 15ث'},
+  {id:'titan',name:'العملاق',desc:'يهبط من السماء بقوة ويحطم كل ما أمامه',price:0,req:0,secret:true,ability:'slam',abLabel:'قدرة: سحق أرضي في الهواء • شحن 14ث'},
+  {id:'phantom',name:'الشبح',desc:'يعبر من خلال العوائق كالطيف لمدة 6 ثوانٍ',price:0,req:0,secret:true,ability:'ghost',abLabel:'قدرة: عبور العوائق 6ث • شحن 30ث'}
 ];
+/* الأكواد السرية (الكود → السكن). الكتابة غير حساسة لحالة الأحرف ولا للشرطات */
+var SECRET_CODES={
+  'SPRING3':'spring',
+  'GLIDE22':'glider',
+  'ANGEL1UP':'angel',
+  'TGEM77':'merchant',
+  'TIME88':'timelord',
+  'GOLD2X':'tycoon',
+  'TINY10':'mini',
+  'ROCKET5':'rocket',
+  'TITAN9':'titan',
+  'BOO404':'phantom'
+};
+/* مهارات التفعيل: dur = مدة النشاط، cd = وقت الشحن */
+var ABIL={
+  fly:{dur:10,cd:40,grace:1.2,ico:'wings',on:'تحليق نشط: ',ready:'تفعيل الطيران (10ث)'},
+  immortal:{dur:10,cd:40,grace:1.2,ico:'shield',on:'درع نشط: ',ready:'تفعيل الدرع الخالد (10ث)'},
+  slowmo:{dur:8,cd:35,grace:0.5,ico:'clock',on:'الزمن بطيء: ',ready:'إبطاء الزمن (8ث)'},
+  score2:{dur:10,cd:35,grace:0,ico:'star',on:'نقاط ×2: ',ready:'تفعيل مضاعف النقاط (10ث)'},
+  shrink:{dur:10,cd:30,grace:0.5,ico:'shrink',on:'تصغير نشط: ',ready:'تفعيل التصغير (10ث)'},
+  ghost:{dur:6,cd:30,grace:0.8,ico:'ghost',on:'وضع الشبح: ',ready:'تفعيل وضع الشبح (6ث)'},
+  superJump:{dur:12,cd:15,grace:0,ico:'rocket',on:'القفزة الخارقة جاهزة: ',ready:'شحن قفزة خارقة'},
+  slam:{dur:4,cd:14,grace:0,ico:'hammer',on:'سحق! ',ready:'سحق أرضي (فعّلها في الهواء)'}
+};
 var CHARIDS=CHARS.map(function(c){return c.id;});
 function charById(id){
   for(var i=0;i<CHARS.length;i++){
@@ -921,8 +966,9 @@ var curSpeed=380, speedRatio=1;
 var shopOpen=false, tab='chars', annc={}, unlockedSkinId=null, claimingLock=false, balAnimRaf=0, displayedBal=0;
 var hi=0;
 try{ hi=parseInt(localStorage.getItem('redman-runner-hi')||'0',10)||0; }catch(e){}
-var man={x:100,y:0,vy:0,air:false,jumps:0,landSquash:0,stridePrev:0};
-var abState={active:0,cd:0,grace:0};
+var man={x:100,y:0,vy:0,air:false,jumps:0,landSquash:0,stridePrev:0,sz:1};
+var abState={active:0,cd:0,grace:0,slam:false,revive:0};
+var holdJump=false, runGems=0;
 var obs=[], collected=[], smashFx=[];
 var word=[], embers=[], confetti=[], wordStep=6, wordCy=0, glow=0;
 var DRESS=['#ff5d8f','#7c5cff','#2ec4b6','#f4a261','#e9ecef','#e05a4f'];
@@ -1079,12 +1125,12 @@ function nextToast(){
 function pushToast(t){ tq.push(t); if(!tBusy) nextToast(); }
 
 var gemBannerTimer=0;
-function showGemBanner(pts){
+function showGemBanner(pts,add){
   var g=save.gems;
   var pct=Math.min(100,Math.round(g/150*100));
   var rem=Math.max(0,150-g);
   gemBannerBadge.textContent='مكافأة نادرة • '+pts+' نقطة';
-  gemBannerTitle.textContent=rem===0?'اكتملت الجواهر لفتح شخصية نادرة!':'ربحت +1 جوهرة T!';
+  gemBannerTitle.textContent=rem===0?'اكتملت الجواهر لفتح شخصية نادرة!':'ربحت +'+(add||1)+' جوهرة T!';
   gemBannerCount.textContent=g+' / 150';
   gemBannerPct.textContent=pct+'%';
   gemBannerFill.style.width=Math.max(3,pct)+'%';
@@ -1136,12 +1182,13 @@ function burst(n){
   }
 }
 function giveGem(){
-  var pts=nextGem;
-  save.gems++; persist(); updCoins();
+  var pts=nextGem, add=1;
+  if(charById(curId()).ability==='gemBonus'){ runGems++; if(runGems%2===0) add=2; }
+  save.gems+=add; persist(); updCoins();
   nextGem+=1500;
   /* heavy visuals/sound run outside the game frame and staggered after the reward effects */
   setTimeout(function(){
-    showGemBanner(pts);
+    showGemBanner(pts,add);
     kick(520);
     burst(55);
     beep(700,1100,.12,'triangle',.05);
@@ -1285,11 +1332,11 @@ function getGameSpeed(sc){
 }
 
 function start(){
-  cheated=false;
   mode='running'; score=0; time=0; dist=0; obs.length=0; smashFx.length=0; gapLeft=240*s;
   curSpeed=getGameSpeed(0); speedRatio=1;
   nextReward=500; rewardN=0; nextGem=1500; collected=[];
   man.y=groundY; man.vy=0; man.air=false; man.jumps=0; man.landSquash=0; man.stridePrev=0;
+  abState.slam=false; abState.revive=(charById(curId()).ability==='lifesaver')?1:0; runGems=0; holdJump=false; man.sz=1;
   abState.active=0; abState.cd=0; abState.grace=0;
   confetti.length=0; shake=0; annc={};
   shelf.innerHTML=''; nextTxt.textContent='الجائزة التالية عند 500';
@@ -1307,7 +1354,7 @@ function die(){
   beep(240,50,.4,'sawtooth',.07);
   kick(900);
   var f=Math.floor(score), prevHi=hi;
-  if(f>hi && !cheated){ hi=f; try{ localStorage.setItem('redman-runner-hi',String(hi)); }catch(e){} }
+  if(f>hi){ hi=f; try{ localStorage.setItem('redman-runner-hi',String(hi)); }catch(e){} }
   hiEl.textContent=fmt(hi);
   if(window.RM && RM.user){ RM.submit(hi).then(function(){ return refreshTop3(true); }); persist(); }
   overScore.textContent=fmt(score); overHi.textContent=fmt(hi);
@@ -1348,18 +1395,27 @@ function jump(){
     beep(540,780,.08,'sine',.03);
     return;
   }
-  var maxJumps=(ch.ability==='doubleJump')?2:1;
+  var maxJumps=(ch.ability==='doubleJump')?2:(ch.ability==='tripleJump'?3:1);
   var jumpScale=1 + (speedRatio - 1) * 0.22;
   if(!man.air){
-    man.vy=-800*s*jumpScale;
+    var sj=(ch.ability==='superJump' && abState.active>0);
+    man.vy=-800*s*jumpScale*(sj?1.4:1);
     man.air=true;
     man.jumps=1;
     man.landSquash=-0.22;
     spawnDustPuffs(7,16);
     beep(420,760,.12,'square',.035);
+    if(sj){
+      endAbility();
+      beep(300,1200,.3,'sawtooth',.05);
+      kick(500);
+      for(var rj=0;rj<18;rj++){
+        smashFx.push({x:man.x+(Math.random()-.5)*14*s,y:groundY,vx:(Math.random()-.5)*120*s,vy:(80+Math.random()*220)*s,r:0,vr:5,sz:4+Math.random()*3,c:rj%2?'#f97316':'#fde047',life:0.6});
+      }
+    }
   } else if(man.jumps<maxJumps){
     man.vy=-750*s*jumpScale;
-    man.jumps=2;
+    man.jumps++;
     man.landSquash=-0.2;
     beep(580,980,.14,'triangle',.045);
     for(var i=0;i<14;i++){
@@ -1379,25 +1435,66 @@ function jump(){
 }
 
 function release(){
+  holdJump=false;
   var ch=charById(curId());
   if(ch.ability==='fly' && abState.active>0) return;
   var cut=-490*s*(1 + (speedRatio - 1) * 0.22);
   if(man.air && man.vy<cut) man.vy=cut;
 }
 
+function endAbility(){
+  var cfg=ABIL[charById(curId()).ability];
+  abState.active=0; abState.slam=false;
+  abState.cd=cfg?cfg.cd:0;
+  abState.grace=(cfg&&cfg.grace)?cfg.grace:0;
+  beep(380,240,.18,'sine',.04);
+}
+function doSlam(){
+  var reach=300*s;
+  for(var a=0;a<obs.length;a++){
+    var o=obs[a];
+    for(var b=o.items.length-1;b>=0;b--){
+      var it=o.items[b], cx=o.x+it.dx;
+      if(cx>man.x-60*s && cx<man.x+reach){
+        o.items.splice(b,1);
+        for(var k=0;k<12;k++){
+          smashFx.push({x:cx,y:groundY-28*s,vx:(60+Math.random()*300)*s,vy:-(120+Math.random()*320)*s,r:Math.random()*6.28,vr:(Math.random()-.5)*14,sz:5+Math.random()*4,c:k%2?it.color:'#f59e0b',life:0.75});
+        }
+      }
+    }
+  }
+  for(var q=0;q<18;q++){
+    smashFx.push({x:man.x+(q-9)*10*s,y:groundY-2*s,vx:(q-9)*45*s,vy:-(30+Math.random()*90)*s,r:0,vr:5,sz:4,c:'rgba(243,237,230,0.7)',life:0.5});
+  }
+  shake=Math.max(shake,0.9); kick(520);
+  beep(150,40,.3,'sawtooth',.08);
+  endAbility();
+}
 function activateAbility(){
   if(mode!=='running' || shopOpen) return;
-  var ch=charById(curId());
-  if(!ch.rare || ch.ability==='doubleJump') return;
+  var ch=charById(curId()), cfg=ABIL[ch.ability];
+  if(!cfg) return;
   if(abState.active>0 || abState.cd>0) return;
-  abState.active=10.0;
+  if(ch.ability==='slam' && !man.air) return;
+  abState.active=cfg.dur;
   abState.cd=0;
+  abState.slam=false;
   if(ch.ability==='fly'){
     man.air=true;
     man.vy=-420*s;
     beep(440,880,.22,'sine',.05);
   } else if(ch.ability==='immortal'){
     beep(330,660,.22,'triangle',.055);
+  } else if(ch.ability==='slam'){
+    abState.slam=true;
+    man.vy=2000*s;
+    beep(500,120,.25,'sawtooth',.06);
+  } else if(ch.ability==='slowmo'){
+    beep(660,220,.3,'sine',.05);
+  } else if(ch.ability==='ghost'){
+    beep(700,300,.3,'sine',.045);
+  } else {
+    beep(440,880,.18,'triangle',.05);
   }
   kick(380);
   updateAbilityHUD();
@@ -1413,45 +1510,44 @@ function abSet(cls,pct,txt,ico,showKey){
 }
 function updateAbilityHUD(){
   var ch=charById(curId());
-  var hide=(mode!=='running' || !ch.rare);
+  var hide=(mode!=='running' || !ch.ability);
   if(abSig.hid!==hide){ abSig.hid=hide; abilityWrap.hidden=hide; }
   if(hide) return;
-  if(ch.ability==='doubleJump'){
-    var canAir=!man.air || man.jumps<2;
-    abSet(canAir?'passive':'cd',canAir?'100%':'50%',canAir?'قفز مزدوج جاهز (2×)':'تمت القفزة الثانية','feather',false);
+  var ab=ch.ability;
+  if(ab==='doubleJump' || ab==='tripleJump'){
+    var tri=(ab==='tripleJump'), mj=tri?3:2;
+    var canAir=!man.air || man.jumps<mj;
+    var left=man.air?(mj-man.jumps):mj;
+    abSet(canAir?'passive':'cd',canAir?'100%':'50%',
+      canAir?(tri?'قفز ثلاثي جاهز ('+left+'×)':'قفز مزدوج جاهز (2×)'):(tri?'استُهلكت القفزات':'تمت القفزة الثانية'),
+      tri?'bolt':'feather',false);
     return;
   }
-  var ico=ch.ability==='fly'?'wings':'shield';
+  if(ab==='glide'){ abSet('passive','100%','انزلاق: اضغط مطولاً في الهواء','feather',false); return; }
+  if(ab==='lifesaver'){
+    var rv=abState.revive>0;
+    abSet(rv?'passive':'cd',rv?'100%':'0%',rv?'فرصة ثانية جاهزة (1×)':'استُخدمت الفرصة الثانية','heart',false);
+    return;
+  }
+  if(ab==='gemBonus'){ abSet('passive','100%','حظ الجواهر: جوهرة إضافية كل جوهرتين','gem',false); return; }
+  var cfg=ABIL[ab];
+  if(!cfg) return;
   if(abState.active>0){
-    abSet('active',Math.round(abState.active/10*200)/2+'%',(ch.ability==='fly'?'تحليق نشط: ':'درع نشط: ')+abState.active.toFixed(1)+'ث',ico,true);
+    abSet('active',Math.round(abState.active/cfg.dur*200)/2+'%',cfg.on+abState.active.toFixed(1)+'ث',cfg.ico,true);
   } else if(abState.cd>0){
-    abSet('cd',Math.round((40-abState.cd)/40*200)/2+'%','إعادة الشحن: '+Math.ceil(abState.cd)+'ث',ico,true);
+    abSet('cd',Math.round((cfg.cd-abState.cd)/cfg.cd*200)/2+'%','إعادة الشحن: '+Math.ceil(abState.cd)+'ث',cfg.ico,true);
   } else {
-    abSet('ready','100%',ch.ability==='fly'?'تفعيل الطيران (10ث)':'تفعيل الدرع الخالد (10ث)',ico,true);
+    abSet('ready','100%',cfg.ready,cfg.ico,true);
   }
 }
 
 function press(){
   if(shopOpen || unlockedSkinId) return;
   if(mode==='intro'){ finishIntro(); return; }
-  if(mode==='ready'){ start(); jump(); }
-  else if(mode==='running'){ jump(); }
+  if(mode==='ready'){ start(); holdJump=true; jump(); }
+  else if(mode==='running'){ holdJump=true; jump(); }
   else if(mode==='over' && performance.now()-overAt>450){ start(); }
 }
-
-/* ---------- أمر الكونسول: setScore(99999) يغيّر السكور فقط (بدون عملات أو جواهر) ---------- */
-var cheated=false;
-window.setScore=function(v){
-  v=Math.floor(+v);
-  if(!isFinite(v) || v<0) return 'اكتب رقماً صحيحاً، مثل setScore(99999)';
-  if(mode!=='running') return 'ابدأ الجولة أولاً ثم أعد كتابة الأمر';
-  score=v; cheated=true;
-  /* نقفز بالجوائز والجواهر إلى ما بعد السكور الجديد حتى لا تُمنح دفعة واحدة */
-  nextReward=(Math.floor(v/500)+1)*500; rewardN=Math.floor(v/500);
-  nextGem=(Math.floor(v/1500)+1)*1500;
-  nextTxt.textContent='الجائزة التالية عند '+nextReward;
-  return 'تم: السكور الآن '+v;
-};
 
 function spawn(sp){
   var r=Math.random(), n=r<0.52?1:((r<0.86||score<600)?2:3), items=[];
@@ -1507,9 +1603,13 @@ function update(dt){
   time+=dt;
   curSpeed=getGameSpeed(score);
   speedRatio=curSpeed/380;
-  var sp=curSpeed*s;
+  var ch0=charById(curId()), act0=abState.active>0;
+  var slowOn=(ch0.ability==='slowmo' && act0), s2On=(ch0.ability==='score2' && act0);
+  var shrOn=(ch0.ability==='shrink' && act0), ghostOn=(ch0.ability==='ghost' && act0);
+  var spN=curSpeed*s, sp=spN*(slowOn?0.55:1);
   dist+=sp*dt;
-  score+=(sp*dt/(s*11.5))*(1 + (speedRatio - 1) * 0.15);
+  score+=(spN*dt/(s*11.5))*(1 + (speedRatio - 1) * 0.15)*(s2On?2:1);
+  man.sz+=((shrOn?0.7:1)-man.sz)*Math.min(1,dt*10);
 
   if(man.landSquash!==0){
     man.landSquash-=man.landSquash*Math.min(1,dt*14);
@@ -1525,12 +1625,7 @@ function update(dt){
   if(abState.grace>0) abState.grace=Math.max(0,abState.grace-dt);
   if(abState.active>0){
     abState.active-=dt;
-    if(abState.active<=0){
-      abState.active=0;
-      abState.cd=40.0;
-      abState.grace=1.2;
-      beep(380,240,.18,'sine',.04);
-    }
+    if(abState.active<=0) endAbility();
   } else if(abState.cd>0){
     abState.cd=Math.max(0,abState.cd-dt);
     if(abState.cd===0){
@@ -1555,12 +1650,17 @@ function update(dt){
   } else {
     var gravScale=1 + (speedRatio - 1) * 0.48;
     var g=2400*s*gravScale*((down&&man.air)?2.5:1);
+    if(ch.ability==='glide' && holdJump && man.air && man.vy>0){
+      g*=0.2;
+      if(man.vy>300*s) man.vy=300*s;
+    }
     man.vy+=g*dt; man.y+=man.vy*dt;
     if(man.y>=groundY){
       if(man.air){
         man.landSquash=Math.min(0.26,Math.max(0.1,man.vy/(2800*s)));
         spawnDustPuffs(6,14);
       }
+      if(abState.slam) doSlam();
       man.y=groundY; man.vy=0; man.air=false; man.jumps=0;
     }
   }
@@ -1577,15 +1677,16 @@ function update(dt){
   for(var i=0;i<obs.length;i++) obs[i].x-=sp*dt;
   while(obs.length && obs[0].x+obs[0].w<-30) obs.shift();
   gapLeft-=sp*dt;
-  if(gapLeft<=0) spawn(sp);
+  if(gapLeft<=0) spawn(spN);
 
-  var isImmortal=(ch.ability==='immortal' && abState.active>0) || abState.grace>0;
-  var mx1=man.x-8*s, mx2=man.x+8*s, feet=man.y-3*s;
+  var isImmortal=(ch.ability==='immortal' && abState.active>0) || abState.grace>0 || abState.slam;
+  var hw=(shrOn?3:8)*s, oh=shrOn?40:54;
+  var mx1=man.x-hw, mx2=man.x+hw, feet=man.y-3*s;
   for(var a=0;a<obs.length;a++){
     var o=obs[a];
     for(var b=o.items.length-1;b>=0;b--){
       var it=o.items[b], cx=o.x+it.dx;
-      if(mx2>cx-7*s && mx1<cx+7*s && feet>groundY-54*it.k*s){
+      if(!ghostOn && mx2>cx-7*s && mx1<cx+7*s && feet>groundY-oh*it.k*s){
         if(isImmortal){
           o.items.splice(b,1);
           shake=0.35;
@@ -1598,6 +1699,14 @@ function update(dt){
               c:k%2?it.color:'#fbbf24', life:0.75
             });
           }
+        } else if(abState.revive>0){
+          abState.revive--; abState.grace=2.0; shake=0.8;
+          o.items.splice(b,1);
+          beep(330,880,.3,'triangle',.06);
+          for(var rv2=0;rv2<20;rv2++){
+            smashFx.push({x:man.x+(Math.random()-.5)*20*s,y:man.y-30*s,vx:(Math.random()-.5)*320*s,vy:-(60+Math.random()*260)*s,r:Math.random()*6.28,vr:(Math.random()-.5)*10,sz:4+Math.random()*4,c:rv2%2?'#fef08a':'#ffffff',life:0.8});
+          }
+          pushToast({cls:'unlock',kind:'فرصة ثانية',title:'أنقذك الملاك الحارس',sub:'استُخدمت الفرصة الثانية في هذه الجولة',icon:'heart'});
         } else {
           die(); return;
         }
@@ -1631,6 +1740,17 @@ var PAL={
   skyknight:{skin:'#e8b98f',hand:'#38bdf8',shirt:'#0284c7',stripe:'#fbbf24',armF:'#38bdf8',armB:'#0369a1',legF:'#1e3a8a',legB:'#172554',shoe:'#38bdf8'},
   immortal:{skin:'#e8b98f',hand:'#e2e8f0',shirt:'#4c1d95',stripe:'#fbbf24',armF:'#cbd5e1',armB:'#64748b',legF:'#312e81',legB:'#1e1b4b',shoe:'#fbbf24'}
 };
+
+PAL.spring={skin:'#e8b98f',hand:'#22c55e',shirt:'#16a34a',stripe:'#fde047',armF:'#22c55e',armB:'#15803d',legF:'#14532d',legB:'#052e16',shoe:'#fde047'};
+PAL.glider={skin:'#e8b98f',hand:'#fb923c',shirt:'#f97316',stripe:'#ffffff',armF:'#fb923c',armB:'#c2410c',legF:'#78350f',legB:'#451a03',shoe:'#ffffff'};
+PAL.angel={skin:'#f1c9a5',hand:'#f1c9a5',shirt:'#ffffff',stripe:'#fde68a',armF:'#fff7ed',armB:'#e5e7eb',legF:'#f8fafc',legB:'#cbd5e1',shoe:'#fde68a'};
+PAL.merchant={skin:'#d9a273',hand:'#d9a273',shirt:'#0f766e',stripe:'#fbbf24',armF:'#14b8a6',armB:'#0f766e',legF:'#7c2d12',legB:'#431407',shoe:'#fbbf24'};
+PAL.timelord={skin:'#e8b98f',hand:'#a5b4fc',shirt:'#312e81',stripe:'#22d3ee',armF:'#4338ca',armB:'#1e1b4b',legF:'#1e1b4b',legB:'#0f0d2e',shoe:'#22d3ee'};
+PAL.tycoon={skin:'#e8b98f',hand:'#e8b98f',shirt:'#111827',stripe:'#facc15',armF:'#1f2937',armB:'#0b0f19',legF:'#1f2937',legB:'#0b0f19',shoe:'#facc15'};
+PAL.mini={skin:'#e8b98f',hand:'#f9a8d4',shirt:'#ec4899',stripe:'#fdf2f8',armF:'#f472b6',armB:'#be185d',legF:'#831843',legB:'#500724',shoe:'#fdf2f8'};
+PAL.rocket={skin:'#e8b98f',hand:'#e5e7eb',shirt:'#dc2626',stripe:'#f9fafb',armF:'#ef4444',armB:'#991b1b',legF:'#e5e7eb',legB:'#9ca3af',shoe:'#f97316'};
+PAL.titan={skin:'#c08457',hand:'#c08457',shirt:'#57534e',stripe:'#f59e0b',armF:'#c08457',armB:'#92613c',legF:'#44403c',legB:'#292524',shoe:'#f59e0b'};
+PAL.phantom={skin:'#c7d2fe',hand:'#e0e7ff',shirt:'#c7d2fe',stripe:'#818cf8',armF:'#e0e7ff',armB:'#a5b4fc',legF:'#c7d2fe',legB:'#a5b4fc',shoe:'#818cf8'};
 
 function rrect(c,x,y,w,h,r){
   c.beginPath();
@@ -1826,6 +1946,104 @@ var HEAD={
   }
 };
 
+HEAD.spring=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
+  c.fillStyle='#16a34a'; c.beginPath(); c.arc(3,-57,7.6,Math.PI,0); c.closePath(); c.fill();
+  var zz=Math.sin(t*10)*1.5;
+  c.strokeStyle='#fde047'; c.lineWidth=1.6;
+  c.beginPath(); c.moveTo(3,-64); c.lineTo(1+zz,-66.5); c.lineTo(5+zz,-68.5); c.lineTo(1+zz,-70.5); c.stroke();
+  c.fillStyle='#fde047'; c.beginPath(); c.arc(3+zz,-72,1.8,0,6.283); c.fill();
+  eye(c,dead,7,-56);
+};
+HEAD.glider=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
+  c.fillStyle='#f97316'; c.beginPath(); c.arc(3,-57,7.8,Math.PI,0); c.closePath(); c.fill();
+  c.fillStyle=dead?'#64748b':'#0ea5e9'; c.fillRect(2.5,-58.8,8,3.4);
+  c.fillStyle='#bae6fd'; if(!dead) c.fillRect(7,-58,2.6,1.4);
+  c.strokeStyle='#ffffff'; c.lineWidth=1.4; c.beginPath(); c.moveTo(-3,-58); c.lineTo(2.5,-57.2); c.stroke();
+};
+HEAD.angel=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
+  c.fillStyle='#fde68a'; c.beginPath(); c.arc(2.5,-57.5,7.6,Math.PI*1.02,Math.PI*1.98); c.closePath(); c.fill();
+  c.strokeStyle='#fde047'; c.lineWidth=1.9;
+  c.beginPath(); c.ellipse(3,-67+Math.sin(t*5)*0.8,6,1.9,0,0,6.283); c.stroke();
+  eye(c,dead,7,-56);
+};
+HEAD.merchant=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
+  c.fillStyle='#0f766e'; c.beginPath(); c.arc(3,-58,8,Math.PI,0); c.lineTo(11,-57); c.lineTo(-5,-57); c.closePath(); c.fill();
+  c.fillStyle='#fbbf24'; c.beginPath(); c.arc(3,-64.5,2,0,6.283); c.fill();
+  c.fillStyle='#3b2a1a'; c.beginPath(); c.arc(4.5,-52.5,4.6,0.2*Math.PI,0.8*Math.PI); c.closePath(); c.fill();
+  eye(c,dead,7,-56);
+};
+HEAD.timelord=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
+  c.fillStyle='#312e81'; c.beginPath(); c.moveTo(-6,-60); c.lineTo(4,-76); c.lineTo(12,-60); c.closePath(); c.fill();
+  c.fillRect(-7,-61,20,2.4);
+  c.fillStyle='#22d3ee'; c.beginPath(); c.arc(4,-66,1.8,0,6.283); c.fill();
+  eye(c,dead,7,-56);
+};
+HEAD.tycoon=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
+  c.fillStyle='#0b0f19'; c.fillRect(-3,-71,13,10); c.fillRect(-6.5,-62,20,2.4);
+  c.fillStyle='#facc15'; c.fillRect(-3,-65,13,2.2);
+  c.strokeStyle='#facc15'; c.lineWidth=1.1; c.beginPath(); c.arc(7.4,-55.5,2.8,0,6.283); c.stroke();
+  eye(c,dead,7.2,-56);
+};
+HEAD.mini=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
+  c.fillStyle='#be185d'; c.beginPath(); c.arc(3,-57.5,7.7,Math.PI,0); c.closePath(); c.fill();
+  c.fillStyle='#f472b6'; c.beginPath(); c.arc(3,-66,3.6,0,6.283); c.fill();
+  eye(c,dead,7,-56);
+};
+HEAD.rocket=function(c,t,dead,P){
+  c.fillStyle='#dc2626'; c.beginPath(); c.arc(3,-57,8.2,0,6.283); c.fill();
+  c.fillStyle='#f9fafb'; c.fillRect(-5,-61,16,2.2);
+  c.fillStyle=dead?'#475569':'#38bdf8'; c.beginPath(); c.ellipse(6,-56,4.6,3.8,0,0,6.283); c.fill();
+  c.fillStyle='#dc2626'; c.beginPath(); c.moveTo(-2,-63); c.lineTo(3,-75); c.lineTo(8,-63); c.closePath(); c.fill();
+};
+HEAD.titan=function(c,t,dead,P){
+  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.8,0,6.283); c.fill();
+  c.fillStyle='#292524'; c.beginPath(); c.arc(4,-52.5,6.4,0.1*Math.PI,0.9*Math.PI); c.closePath(); c.fill();
+  c.fillStyle='#9ca3af'; c.fillRect(-4.8,-62,16,2.8);
+  c.strokeStyle='#1b1512'; c.lineWidth=1.4; c.beginPath(); c.moveTo(4.5,-59.2); c.lineTo(9.5,-57.8); c.stroke();
+  eye(c,dead,7.2,-56.5);
+};
+HEAD.phantom=function(c,t,dead,P){
+  c.fillStyle='#e0e7ff'; c.strokeStyle='#818cf8'; c.lineWidth=1.1;
+  c.beginPath(); c.arc(3,-56,8,Math.PI,0); c.lineTo(11,-48); c.lineTo(7,-50); c.lineTo(3,-48); c.lineTo(-1,-50); c.lineTo(-5,-48); c.closePath(); c.fill(); c.stroke();
+  c.fillStyle='#1e1b4b';
+  c.beginPath(); c.ellipse(1,-56,1.6,2.4,0,0,6.283); c.ellipse(7,-56,1.6,2.4,0,0,6.283); c.fill();
+};
+BACK.angel=function(c,t){
+  var fl=Math.sin(t*14)*6;
+  c.fillStyle='#ffffff'; c.strokeStyle='#e5e7eb'; c.lineWidth=1;
+  c.beginPath(); c.moveTo(-2,-46); c.quadraticCurveTo(-18,-62+fl,-27,-42+fl); c.quadraticCurveTo(-14,-36,-3,-37); c.closePath(); c.fill(); c.stroke();
+  c.fillStyle='#fde68a';
+  c.beginPath(); c.moveTo(-3,-43); c.quadraticCurveTo(-13,-51+fl,-19,-40+fl); c.lineTo(-4,-38); c.closePath(); c.fill();
+};
+BACK.glider=function(c,t){
+  var sw=Math.sin(t*9)*2;
+  c.strokeStyle='#fde68a'; c.lineWidth=0.9;
+  c.beginPath(); c.moveTo(-2,-44); c.lineTo(-16+sw,-64); c.moveTo(-2,-40); c.lineTo(-4+sw,-64); c.stroke();
+  c.fillStyle='#fb923c'; c.strokeStyle='#c2410c'; c.lineWidth=1;
+  c.beginPath(); c.moveTo(-20+sw,-62); c.quadraticCurveTo(-11+sw,-76,0+sw,-62); c.closePath(); c.fill(); c.stroke();
+  c.fillStyle='#ffffff'; c.beginPath(); c.moveTo(-12+sw,-64); c.quadraticCurveTo(-10+sw,-72,-8+sw,-64); c.closePath(); c.fill();
+};
+BACK.merchant=function(c,t){
+  c.fillStyle='#a16207'; c.strokeStyle='#713f12'; c.lineWidth=1;
+  c.beginPath(); c.arc(-9,-37,7.5,0,6.283); c.fill(); c.stroke();
+  c.fillStyle='#fbbf24'; c.beginPath(); c.arc(-9,-37,3,0,6.283); c.fill();
+  c.strokeStyle='#713f12'; c.beginPath(); c.moveTo(-12,-44); c.lineTo(-6,-44); c.stroke();
+};
+BACK.rocket=function(c,t,P){
+  c.fillStyle='#e5e7eb'; c.strokeStyle='#9ca3af'; c.lineWidth=1;
+  c.beginPath(); c.rect(-12,-50,8,19); c.fill(); c.stroke();
+  c.fillStyle='#dc2626'; c.fillRect(-12,-50,8,4);
+  c.fillStyle='#f97316'; c.globalAlpha=0.7+0.3*Math.sin(t*25);
+  c.beginPath(); c.moveTo(-11,-31); c.lineTo(-8,-31+6+Math.sin(t*30)*2); c.lineTo(-5,-31); c.closePath(); c.fill(); c.globalAlpha=1;
+};
+
 function drawChar(c,id,x,y,sc,t,pose,isLive){
   var P=PAL[id]||PAL.redman, air=pose==='air', dead=pose==='dead', run=pose==='run', still=(pose==='idle'||dead);
   var hipY=-27, shY=-47;
@@ -1866,7 +2084,25 @@ function drawChar(c,id,x,y,sc,t,pose,isLive){
       c.lineWidth=2;
       c.beginPath(); c.ellipse(0,-34,28,36+Math.sin(t*10)*2,0,0,6.283); c.stroke();
       c.restore();
+    } else if(id==='timelord' && abState.active>0){
+      c.save(); c.strokeStyle='rgba(34,211,238,0.85)'; c.fillStyle='rgba(34,211,238,0.10)'; c.lineWidth=2;
+      c.beginPath(); c.arc(1,-36,32+Math.sin(t*5)*3,0,6.283); c.fill(); c.stroke();
+      c.beginPath(); c.moveTo(1,-36); c.lineTo(1+Math.cos(t*3)*22,-36+Math.sin(t*3)*22); c.stroke();
+      c.restore();
+    } else if(id==='tycoon' && abState.active>0){
+      c.save(); c.strokeStyle='rgba(250,204,21,0.9)'; c.fillStyle='rgba(250,204,21,0.12)'; c.lineWidth=2.2;
+      c.beginPath(); c.arc(1,-36,33+Math.sin(t*9)*2,0,6.283); c.fill(); c.stroke();
+      c.restore();
+    } else if(id==='rocket' && abState.active>0){
+      c.save(); c.fillStyle='rgba(249,115,22,0.35)';
+      c.beginPath(); c.ellipse(-4,-6,9,16+Math.sin(t*30)*4,0,0,6.283); c.fill();
+      c.restore();
+    } else if(id==='titan' && abState.slam){
+      c.save(); c.strokeStyle='rgba(245,158,11,0.9)'; c.lineWidth=3;
+      c.beginPath(); c.moveTo(-8,-90); c.lineTo(-8,-62); c.moveTo(2,-100); c.lineTo(2,-66); c.moveTo(12,-90); c.lineTo(12,-62); c.stroke();
+      c.restore();
     }
+    if(id==='phantom') c.globalAlpha=(abState.active>0)?0.42:0.85;
   }
 
   c.translate(0,bob);
@@ -2293,7 +2529,7 @@ function render(){
   ctx.fill();
 
   var pose=mode==='over'?'dead':((charById(curId()).ability==='fly'&&abState.active>0)?'air':(man.air?'air':(mode==='running'?'run':'idle')));
-  drawChar(ctx,curId(),man.x,man.y,s,clock,pose,true);
+  drawChar(ctx,curId(),man.x,man.y,s*man.sz,clock,pose,true);
   drawConfetti();
   ctx.restore();
   var sc=fmt(score);
@@ -2406,8 +2642,8 @@ function launchExchangeCoins(btnEl,gainAmount,prevCoins,newCoins,onComplete){
 
 function showUnlockCelebration(charObj){
   unlockedSkinId=charObj.id;
-  unlockCard.className='unlock-card'+(charObj.rare?' rare':'');
-  unlockBadge.textContent=charObj.rare?'شخصية نادرة أسطورية ★':'سكن جديد مضاف لمجموعتك';
+  unlockCard.className='unlock-card'+((charObj.rare||charObj.secret)?' rare':'');
+  unlockBadge.textContent=charObj.secret?'سكن سري من كود ★':(charObj.rare?'شخصية نادرة أسطورية ★':'سكن جديد مضاف لمجموعتك');
   unlockName.textContent=charObj.name;
   unlockDesc.textContent=charObj.desc;
   if(charObj.abLabel){
@@ -2455,9 +2691,10 @@ function drawUnlockPreview(){
 function renderShop(){
   updCoins();
   tabChars.classList.toggle('on',tab==='chars'); tabRew.classList.toggle('on',tab==='rew');
-  tabRank.classList.toggle('on',tab==='rank'); tabAcc.classList.toggle('on',tab==='acc');
+  tabRank.classList.toggle('on',tab==='rank'); tabAcc.classList.toggle('on',tab==='acc'); tabCode.classList.toggle('on',tab==='code');
   if(tab==='rank'){ renderRank(); return; }
   if(tab==='acc'){ renderAcc(); return; }
+  if(tab==='code'){ renderCode(); return; }
   var h='', best=bestScore();
   if(tab==='chars'){
     if(RM.configured){
@@ -2465,9 +2702,11 @@ function renderShop(){
     }
     h+='<div class="grid">';
     CHARS.forEach(function(ch){
+      if(ch.secret && save.owned.indexOf(ch.id)<0) return;
       var owned=hasChar(ch.id), loaned=owned&&save.owned.indexOf(ch.id)<0, selected=curId()===ch.id, unlocked=best>=ch.req;
-      h+='<div class="card'+(ch.rare?' rare':'')+(selected?' sel':'')+((!owned&&!unlocked)?' locked':'')+'">';
+      h+='<div class="card'+((ch.rare||ch.secret)?' rare':'')+(selected?' sel':'')+((!owned&&!unlocked)?' locked':'')+'">';
       if(ch.rare) h+='<span class="rare-tag">نادر ★</span>';
+      else if(ch.secret) h+='<span class="rare-tag sec">كود ★</span>';
       h+='<canvas class="prev" data-id="'+ch.id+'" data-still="'+((!owned&&!unlocked)?1:0)+'"></canvas><div class="nm">'+ch.name+'</div>';
       if(ch.abLabel) h+='<div class="ab-pill">'+ch.abLabel+'</div>';
       if(owned){
@@ -2593,6 +2832,7 @@ function updHudAvatar(){
 function avPickerHTML(){
   var h='<div class="avgrid">';
   CHARS.forEach(function(c){
+    if(c.secret && save.owned.indexOf(c.id)<0) return;
     h+='<button class="avpick'+(save.avatar===c.id?' sel':'')+'" type="button" data-act="setav" data-id="'+c.id+'" aria-label="'+c.name+'"><canvas class="av" data-sz="46" data-id="'+c.id+'"></canvas></button>';
   });
   return h+'</div>';
@@ -2785,6 +3025,35 @@ function renderAcc(){
   }
   shopBody.innerHTML=h; drawAvatars(shopBody);
 }
+var codeMsg='', codeOk=false, codeVal='';
+function normCode(v){ return String(v||'').toUpperCase().replace(/[^A-Z0-9]/g,''); }
+function renderCode(){
+  var n=0;
+  CHARS.forEach(function(c){ if(c.secret && save.owned.indexOf(c.id)>=0) n++; });
+  shopBody.innerHTML='<div class="acc-form"><h3>إدخال الكود</h3>'+
+    '<p>أدخل كوداً سرياً لتحصل على سكن خاص بمهارة فريدة. السكنات السرية لا تُباع في المتجر.</p>'+
+    '<input id="codeIn" class="fld codein" type="text" maxlength="24" placeholder="اكتب الكود هنا" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" value="'+esc(codeVal)+'">'+
+    '<div class="msg'+(codeOk?' ok':'')+'">'+esc(codeMsg)+'</div>'+
+    '<button class="btn pri" type="button" data-act="redeem">تفعيل الكود</button>'+
+    '<p>السكنات المفتوحة بالأكواد: '+n+' / 10</p></div>';
+}
+function doRedeem(){
+  var el=$('codeIn');
+  codeVal=el?el.value:codeVal;
+  var v=normCode(codeVal);
+  codeOk=false;
+  if(!v){ codeMsg='اكتب الكود أولاً'; renderCode(); return; }
+  var id=SECRET_CODES[v];
+  if(!id){ codeMsg='الكود غير صحيح'; beep(240,120,.2,'sawtooth',.05); renderCode(); return; }
+  var ch=charById(id);
+  if(save.owned.indexOf(id)>=0){ codeMsg='تملك سكن «'+ch.name+'» بالفعل'; renderCode(); return; }
+  save.owned.push(id); save.sel=id;
+  abState.active=0; abState.cd=0; abState.grace=0;
+  persist();
+  codeOk=true; codeMsg='تم تفعيل الكود: '+ch.name; codeVal='';
+  updCoins(); renderCode();
+  showUnlockCelebration(ch);
+}
 function goTab(t){
   tab=t;
   if(t==='rank'){ rankErr=''; loadRank(); }
@@ -2806,12 +3075,14 @@ shopBody.addEventListener('click',function(e){
   else if(act==='goacc') goTab('acc');
   else if(act==='rkgo') goTab('rank');
   else if(act==='setav') setAvatar(b.getAttribute('data-id'));
+  else if(act==='redeem') doRedeem();
 });
-shopBody.addEventListener('input',function(e){ if(e.target && e.target.id==='accU') accUser=e.target.value; });
+shopBody.addEventListener('input',function(e){ if(!e.target) return; if(e.target.id==='accU') accUser=e.target.value; else if(e.target.id==='codeIn') codeVal=e.target.value; });
 shopBody.addEventListener('keydown',function(e){
   if(e.key!=='Enter' || !e.target) return;
   if(e.target.id==='accU'){ e.preventDefault(); var p=$('accP'); if(p) p.focus(); }
   else if(e.target.id==='accP'){ e.preventDefault(); doAuth('login'); }
+  else if(e.target.id==='codeIn'){ e.preventDefault(); doRedeem(); }
 });
 
 function openShop(t){
@@ -2902,6 +3173,7 @@ tabChars.addEventListener('click',function(){ if(claimingLock) return; tab='char
 tabRew.addEventListener('click',function(){ if(claimingLock) return; tab='rew'; renderShop(); });
 tabRank.addEventListener('click',function(){ if(claimingLock) return; goTab('rank'); });
 tabAcc.addEventListener('click',function(){ if(claimingLock) return; goTab('acc'); });
+tabCode.addEventListener('click',function(){ if(claimingLock) return; goTab('code'); });
 accBtn.addEventListener('click',function(){ openShop('acc'); });
 $('shopClose').addEventListener('click',closeShop);
 shopEl.addEventListener('click',function(e){ if(e.target===shopEl) closeShop(); });
@@ -2912,6 +3184,10 @@ for(var oi=0;oi<opens.length;oi++){
 var openRanks=document.querySelectorAll('.openRank');
 for(var ri2=0;ri2<openRanks.length;ri2++){
   openRanks[ri2].addEventListener('click',function(){ openShop('rank'); });
+}
+var openCodes=document.querySelectorAll('.openCode');
+for(var oc2=0;oc2<openCodes.length;oc2++){
+  openCodes[oc2].addEventListener('click',function(){ openShop('code'); });
 }
 var firstAuth=true;
 if(window.RM){
