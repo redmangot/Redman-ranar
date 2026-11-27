@@ -318,11 +318,112 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
 .rwd-note{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(139,92,246,.12);border:1px solid #533f99;color:#c4b5fd;font:700 13px/1.7 var(--ui);text-align:center}
 .rwd-note.on{background:rgba(74,222,128,.1);border-color:#2f7a4a;color:#86efac}
 .ab-pill.loan{color:#86efac;background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.4)}
-.fld.codein{text-align:center;text-transform:uppercase;letter-spacing:.16em;font-size:18px}
-.rare-tag.sec{background:linear-gradient(90deg,#38bdf8,#6366f1);color:#fff;box-shadow:0 2px 8px rgba(99,102,241,.45)}
+
+/* Daily Missions & Weekly Check-In */
+.quest-wrap{display:flex;flex-direction:column;gap:14px}
+.q-sec{background:#12121a;border:1px solid var(--line);border-radius:16px;padding:14px}
+.q-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.q-head h3{margin:0;font:900 17px var(--ui);color:var(--bone);display:flex;align-items:center;gap:7px}
+.q-timer{font:700 11.5px var(--ui);color:var(--cyan);background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.3);padding:3px 10px;border-radius:999px;font-variant-numeric:tabular-nums}
+.wk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media(min-width:560px){.wk-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+.wk-day{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:5px;padding:10px 6px;border-radius:13px;background:#0c0c12;border:1px solid var(--line);text-align:center;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.wk-day.d7{grid-column:span 2}
+@media(min-width:560px){.wk-day.d7{grid-column:span 1;border-color:#7c3aed;background:linear-gradient(180deg,#1c1330,#0c0c12)}}
+.wk-day.done{opacity:.55;border-color:#2f7a4a;background:rgba(74,222,128,.06)}
+.wk-day.today{border-color:var(--gold);background:linear-gradient(180deg,rgba(255,197,77,.18),rgba(18,18,26,.95));box-shadow:0 0 18px rgba(255,197,77,.28);cursor:pointer}
+.wk-day.today:active{transform:scale(.95)}
+.wk-lbl{font:800 11.5px var(--ui);color:var(--dim)}
+.wk-day.today .wk-lbl{color:#fde68a}
+.wk-ico{display:grid;place-items:center;height:28px}
+.wk-ico svg{width:24px;height:24px}
+.wk-val{font:900 13px var(--ui);color:var(--gold);font-variant-numeric:tabular-nums}
+.wk-day.d7 .wk-val{color:#c4b5fd}
+.wk-st{font:800 10.5px var(--ui);padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--dim)}
+.wk-day.today .wk-st{background:var(--gold);color:#241500;animation:pulse 1.5s infinite}
+.wk-day.done .wk-st{background:rgba(74,222,128,.16);color:#86efac}
+.q-list{display:flex;flex-direction:column;gap:9px}
+.q-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:13px;background:#0c0c12;border:1px solid var(--line)}
+.q-item.ready{border-color:var(--gold);background:linear-gradient(90deg,rgba(255,197,77,.11),#0c0c12)}
+.q-item.claimed{opacity:.55;border-color:#2c2c36}
+.q-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.q-top b{font:800 14px var(--ui);color:var(--bone)}
+.q-top span{font:800 12px var(--ui);color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.q-bar{width:100%;height:6px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden}
+.q-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:999px;transition:width .3s ease}
+.q-item.claimed .q-bar i{background:#4ade80}
+
+
+/* Promo Codes & Secret Rare Characters */
+.promo-box{background:linear-gradient(145deg,#181426,#111118);border:1px solid #4c3575;border-radius:16px;padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 8px 28px rgba(124,58,237,.16)}
+.promo-box h3{margin:0;font:900 17px var(--ui);color:var(--bone);display:flex;align-items:center;gap:8px}
+.promo-box p{margin:0;font:600 12.5px var(--ui);color:var(--dim);line-height:1.6}
+.promo-row{display:flex;gap:8px;align-items:stretch}
+.promo-row .fld{flex:1;text-transform:uppercase;letter-spacing:.12em;font:800 15px var(--ui);text-align:center}
+.promo-row .btn{padding:0 20px;min-height:44px;font-size:15px;flex-shrink:0}
+.promo-msg{font:700 13px var(--ui);min-height:1.4em;text-align:center}
+.promo-msg.ok{color:#86efac}
+.promo-msg.err{color:#ff8f7a}
+.card.secret{border-color:#f59e0b;background:linear-gradient(180deg,#251938 0%,#120f1c 100%);box-shadow:0 0 24px rgba(245,158,11,.24)}
+.card.secret.sel{border-color:#38bdf8;box-shadow:inset 0 0 0 1px #38bdf8,0 0 24px rgba(56,189,248,.35)}
+.secret-tag{position:absolute;top:8px;right:8px;padding:2px 8px;border-radius:999px;background:linear-gradient(90deg,#ec4899,#8b5cf6);color:#fff;font:900 10px var(--ui);letter-spacing:.03em;box-shadow:0 2px 8px rgba(236,72,153,.45)}
+
+/* Game Boot Loading Screen */
+#bootLoader{
+  position:fixed;inset:0;z-index:100;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  background:radial-gradient(circle at 50% 42%,#1a0c12 0%,#09090c 72%);
+  padding:24px;text-align:center;
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),visibility .55s ease;
+}
+#bootLoader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.ld-logo{
+  font-family:var(--display);font-size:clamp(54px,13vw,96px);line-height:.92;letter-spacing:.06em;
+  color:var(--bone);text-shadow:0 0 28px rgba(255,42,42,.55);
+  display:flex;align-items:center;justify-content:center;gap:2px;
+}
+.ld-logo span{color:var(--red)}
+.ld-sub{font:700 12.5px var(--ui);color:var(--dim);letter-spacing:.12em;margin-top:-10px}
+.ld-runner{width:84px;height:86px;display:grid;place-items:center;position:relative}
+.ld-runner canvas{width:84px;height:86px;display:block}
+.ld-bar-wrap{width:min(320px,82vw);display:flex;flex-direction:column;gap:8px}
+.ld-track{
+  width:100%;height:9px;border-radius:999px;
+  background:rgba(255,255,255,.08);border:1px solid var(--line);
+  overflow:hidden;box-shadow:inset 0 1px 4px rgba(0,0,0,.6);
+}
+.ld-fill{
+  height:100%;width:0%;border-radius:999px;
+  background:linear-gradient(90deg,var(--red),var(--ember),var(--gold));
+  box-shadow:0 0 14px rgba(255,42,42,.65);
+  transition:width .18s ease-out;
+}
+.ld-meta{display:flex;justify-content:space-between;align-items:center;font:800 12.5px var(--ui);color:var(--dim)}
+.ld-meta b{color:var(--gold);font-variant-numeric:tabular-nums;font-size:13.5px}
+.ld-tip{
+  max-width:360px;padding:8px 16px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  font:600 12px var(--ui);color:#c7c2ce;line-height:1.6;
+}
 </style>
 </head>
 <body>
+
+<div id="bootLoader" dir="rtl" lang="ar" role="status" aria-live="polite" aria-label="جارٍ تحميل اللعبة">
+  <div class="ld-logo" dir="ltr"><span>RED</span>MAN</div>
+  <div class="ld-sub">RUNNER EDITION</div>
+  <div class="ld-runner"><canvas id="ldCv"></canvas></div>
+  <div class="ld-bar-wrap">
+    <div class="ld-track"><div id="ldFill" class="ld-fill"></div></div>
+    <div class="ld-meta">
+      <span id="ldStatus">جارٍ تهيئة عالم اللعبة...</span>
+      <b id="ldPct">0%</b>
+    </div>
+  </div>
+  <div id="ldTip" class="ld-tip">نصيحة: اجمع جائزة كل 500 نقطة واستبدلها بعملات R في المتجر!</div>
+</div>
+
 <div id="stage" class="intro">
   <canvas id="c"></canvas>
   <div id="err" hidden></div>
@@ -344,6 +445,10 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
     <div class="ctls">
       <button id="accBtn" class="ctl" type="button" aria-label="الحساب والترتيب العالمي">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+      </button>
+      <button id="questBtn" class="ctl" type="button" aria-label="المهمات اليومية والأسبوعية">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M8 2v4M16 2v4M3 9h18M9 14l2 2 4-4"/></svg>
+        <span id="questBadge" class="badge" hidden>0</span>
       </button>
       <button class="ctl openShop" type="button" aria-label="المتجر">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
@@ -406,7 +511,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
         <span class="cta">اضغط للبدء</span>
         <button class="btn gold openShop" type="button">المتجر</button>
         <button class="btn openRank" type="button">الترتيب العالمي</button>
-        <button class="btn openCode" type="button">إدخال الكود</button>
+        <button class="btn openQuests" type="button">المهمات</button>
       </div>
     </div>
   </div>
@@ -425,7 +530,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
         <span class="cta">اضغط للعب من جديد</span>
         <button class="btn gold openShop" type="button">المتجر</button>
         <button class="btn openRank" type="button">الترتيب العالمي</button>
-        <button class="btn openCode" type="button">إدخال الكود</button>
+        <button class="btn openQuests" type="button">المهمات</button>
       </div>
     </div>
   </div>
@@ -443,9 +548,10 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit}
       <div class="tabs" role="tablist">
         <button id="tabChars" class="tab on" type="button" role="tab">الشخصيات</button>
         <button id="tabRew" class="tab" type="button" role="tab">الجوائز <span id="invN"></span></button>
+        <button id="tabCodes" class="tab" type="button" role="tab">الأكواد</button>
+        <button id="tabQuests" class="tab" type="button" role="tab">المهمات <span id="qTabN"></span></button>
         <button id="tabRank" class="tab" type="button" role="tab">الترتيب</button>
         <button id="tabAcc" class="tab" type="button" role="tab">حسابي</button>
-        <button id="tabCode" class="tab" type="button" role="tab">إدخال الكود</button>
       </div>
       <div id="shopBody" class="sh-body"></div>
     </div>
@@ -652,20 +758,17 @@ var gemBanner=$('gemBanner'), gemBannerIco=$('gemBannerIco'), gemBannerBadge=$('
 var ovReady=$('ovReady'), ovOver=$('ovOver'), overScore=$('overScore'), overHi=$('overHi'), overShelf=$('overShelf');
 var overUnlock=$('overUnlock'), overHint=$('overHint');
 var sndBtn=$('snd'), fsBtn=$('fs');
-var tabRank=$('tabRank'), tabAcc=$('tabAcc'), tabCode=$('tabCode'), accBtn=$('accBtn');
-var shopEl=$('shop'), shopBody=$('shopBody'), tabChars=$('tabChars'), tabRew=$('tabRew'), invN=$('invN'), balN=$('balN'), balPill=$('balPill');
+var tabRank=$('tabRank'), tabAcc=$('tabAcc'), accBtn=$('accBtn');
+var shopEl=$('shop'), shopBody=$('shopBody'), tabChars=$('tabChars'), tabRew=$('tabRew'), tabCodes=$('tabCodes'), invN=$('invN'), balN=$('balN'), balPill=$('balPill');
+var questBtn=$('questBtn'), questBadge=$('questBadge'), tabQuests=$('tabQuests'), qTabN=$('qTabN');
 var unlockModal=$('unlockModal'), unlockCard=$('unlockCard'), unlockBadge=$('unlockBadge'), unlockPrev=$('unlockPrev'), unlockName=$('unlockName'), unlockAb=$('unlockAb'), unlockDesc=$('unlockDesc'), unlockOk=$('unlockOk');
 var fxLayer=$('fxLayer');
+var bootLoader=$('bootLoader'), ldFill=$('ldFill'), ldStatus=$('ldStatus'), ldPct=$('ldPct'), ldTip=$('ldTip'), ldCv=$('ldCv');
 var reduce=false;
 try{ reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
 
 /* ---------- Icons ---------- */
 var IC={
-  ghost:'<path d="M5 21V11a7 7 0 0 1 14 0v10l-3-2-2 2-2-2-2 2-2-2-3 2z"/><circle cx="9.5" cy="11" r="1"/><circle cx="14.5" cy="11" r="1"/>',
-  rocket:'<path d="M12 2c3 2.5 4.5 6 4.5 10l-2 3h-5l-2-3c0-4 1.5-7.5 4.5-10z"/><circle cx="12" cy="9" r="1.6"/><path d="M9.5 15l-2.5 4M14.5 15l2.5 4M12 15v5"/>',
-  hammer:'<path d="M14 4l6 6-3 3-6-6 3-3z"/><path d="M11 7L4 14l3 3 7-7M5 19l-2 2"/>',
-  shrink:'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>',
-  heart:'<path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/>',
   gift:'<rect x="3.5" y="10" width="17" height="10.5" rx="1.5"/><rect x="2.5" y="6.5" width="19" height="3.5" rx="1.2"/><path d="M12 6.5v14"/><path d="M12 6.5C10.5 3 6.8 3.5 7.2 5.4 7.5 6.6 10 6.5 12 6.5zm0 0c1.5-3.5 5.2-3 4.8-1.1C16.5 6.6 14 6.5 12 6.5z"/>',
   trophy:'<path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4v1a4 4 0 0 0 4 4M17 6h3v1a4 4 0 0 1-4 4"/><path d="M12 14v4M8 21h8M9 18h6"/>',
   star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3z"/>',
@@ -869,42 +972,22 @@ var CHARS=[
   {id:'falcon',name:'الصقر الذهبي',desc:'أجنحة ذهبية تمنح قفزة إضافية في الهواء',price:0,gems:150,req:0,rare:true,ability:'doubleJump',abLabel:'قدرة: قفز مزدوج في الهواء'},
   {id:'skyknight',name:'فارس السماء',desc:'يطير عالياً فوق العوائق لمدة 10 ثوانٍ',price:0,gems:150,req:0,rare:true,ability:'fly',abLabel:'قدرة: طيران 10ث • شحن 40ث'},
   {id:'immortal',name:'الدرع الخالد',desc:'مناعة مطلقة تحطم العوائق لمدة 10 ثوانٍ',price:0,gems:150,req:0,rare:true,ability:'immortal',abLabel:'قدرة: لا يموت 10ث • شحن 40ث'},
-  /* ===== سكنات سرية: لا تظهر في المتجر إلا بعد تفعيل كودها ===== */
-  {id:'spring',name:'الزنبرك',desc:'قدماه كالنوابض، يقفز ثلاث مرات',price:0,req:0,secret:true,ability:'tripleJump',abLabel:'قدرة: قفز ثلاثي في الهواء'},
-  {id:'glider',name:'المظلّي',desc:'مظلة تسمح له بالانزلاق ببطء في الهواء',price:0,req:0,secret:true,ability:'glide',abLabel:'قدرة: انزلاق (اضغط مطولاً في الهواء)'},
-  {id:'angel',name:'الملاك الحارس',desc:'ينقذك من الموت مرة واحدة في كل جولة',price:0,req:0,secret:true,ability:'lifesaver',abLabel:'قدرة: فرصة ثانية (مرة كل جولة)'},
-  {id:'merchant',name:'التاجر',desc:'حقيبته مليئة بالحظ: جوهرة T إضافية كل جوهرتين',price:0,req:0,secret:true,ability:'gemBonus',abLabel:'قدرة: جواهر T إضافية'},
-  {id:'timelord',name:'سيد الزمن',desc:'يبطئ العالم من حوله لمدة 8 ثوانٍ',price:0,req:0,secret:true,ability:'slowmo',abLabel:'قدرة: إبطاء الزمن 8ث • شحن 35ث'},
-  {id:'tycoon',name:'الثري',desc:'يضاعف نقاطك لمدة 10 ثوانٍ',price:0,req:0,secret:true,ability:'score2',abLabel:'قدرة: نقاط ×2 لمدة 10ث • شحن 35ث'},
-  {id:'mini',name:'القزم الخفي',desc:'يصغر حجمه فيصعب لمسه',price:0,req:0,secret:true,ability:'shrink',abLabel:'قدرة: تصغير 10ث • شحن 30ث'},
-  {id:'rocket',name:'الصاروخ',desc:'قفزته التالية تصل إلى ارتفاع خارق',price:0,req:0,secret:true,ability:'superJump',abLabel:'قدرة: قفزة خارقة • شحن 15ث'},
-  {id:'titan',name:'العملاق',desc:'يهبط من السماء بقوة ويحطم كل ما أمامه',price:0,req:0,secret:true,ability:'slam',abLabel:'قدرة: سحق أرضي في الهواء • شحن 14ث'},
-  {id:'phantom',name:'الشبح',desc:'يعبر من خلال العوائق كالطيف لمدة 6 ثوانٍ',price:0,req:0,secret:true,ability:'ghost',abLabel:'قدرة: عبور العوائق 6ث • شحن 30ث'}
+  {id:'crimson_demon',name:'شيطان القرمز',desc:'شخصية سرية من ألسنة اللهب تمنح قفزة مزدوجة',price:0,gems:0,req:0,rare:true,secret:true,ability:'doubleJump',abLabel:'قدرة سرية: قفز مزدوج ناري'},
+  {id:'thunder_lord',name:'سيد الرعد',desc:'يحلق بسرعة البرق فوق العوائق لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'fly',abLabel:'قدرة سرية: طيران رعدي 10ث'},
+  {id:'void_emperor',name:'إمبراطور الفراغ',desc:'درع كوني أسود يبتلع كل العوائق لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'immortal',abLabel:'قدرة سرية: مناعة الفراغ 10ث'},
+  {id:'solar_phoenix',name:'عنقاء الشمس',desc:'أجنحة شمسية ذهبية تمنح قفزة إضافية في السماء',price:0,gems:0,req:0,rare:true,secret:true,ability:'doubleJump',abLabel:'قدرة سرية: قفزة العنقاء 2×'},
+  {id:'frost_monarch',name:'ملك الصقيع',desc:'يطير فوق العواصف الجليدية لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'fly',abLabel:'قدرة سرية: تحليق جليدي 10ث'},
+  {id:'neon_phantom',name:'شبح النيون',desc:'درع طيفي متوهج يخترق العوائق لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'immortal',abLabel:'قدرة سرية: درع النيون 10ث'},
+  {id:'abyss_dragon',name:'تنين الهاوية',desc:'قوة التنين الأسطوري تمنح قفزاً مزدوجاً خارقاً',price:0,gems:0,req:0,rare:true,secret:true,ability:'doubleJump',abLabel:'قدرة سرية: قفزة التنين 2×'},
+  {id:'star_guardian',name:'حارس النجوم',desc:'يحلق بين المجرات فوق كل العقبات لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'fly',abLabel:'قدرة سرية: طيران نجمي 10ث'},
+  {id:'omega_titan',name:'عملاق أوميغا',desc:'هيكل تيتانيوم خارق لا يُقهر لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'immortal',abLabel:'قدرة سرية: درع أوميغا 10ث'},
+  {id:'emerald_viper',name:'أفعى الزمرد',desc:'رشاقة الزمرد السرية تمنح قفزة مزدوجة خاطفة',price:0,gems:0,req:0,rare:true,secret:true,ability:'doubleJump',abLabel:'قدرة سرية: قفز الزمرد 2×'},
+  {id:'blood_moon',name:'قمر الدم',desc:'يحلق تحت ضوء القمر القرمزي لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'fly',abLabel:'قدرة سرية: تحليق القمر 10ث'},
+  {id:'chrono_knight',name:'فارس الزمن',desc:'درع زمني يوقف الخطر تماماً لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'immortal',abLabel:'قدرة سرية: درع الزمن 10ث'},
+  {id:'inferno_king',name:'ملك الجحيم',desc:'تاج النيران السري يمنح قفزة مزدوجة مشتعلة',price:0,gems:0,req:0,rare:true,secret:true,ability:'doubleJump',abLabel:'قدرة سرية: قفز الجحيم 2×'},
+  {id:'celestial_angel',name:'الملاك السماوي',desc:'أجنحة النور النقية تحلق في السماء لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'fly',abLabel:'قدرة سرية: أجنحة النور 10ث'},
+  {id:'obsidian_god',name:'إله السبج',desc:'قوة الظلام المطلقة تحطم كل شيء لمدة 10 ثوانٍ',price:0,gems:0,req:0,rare:true,secret:true,ability:'immortal',abLabel:'قدرة سرية: درع السبج 10ث'}
 ];
-/* الأكواد السرية (الكود → السكن). الكتابة غير حساسة لحالة الأحرف ولا للشرطات */
-var SECRET_CODES={
-  'SPRING3':'spring',
-  'GLIDE22':'glider',
-  'ANGEL1UP':'angel',
-  'TGEM77':'merchant',
-  'TIME88':'timelord',
-  'GOLD2X':'tycoon',
-  'TINY10':'mini',
-  'ROCKET5':'rocket',
-  'TITAN9':'titan',
-  'BOO404':'phantom'
-};
-/* مهارات التفعيل: dur = مدة النشاط، cd = وقت الشحن */
-var ABIL={
-  fly:{dur:10,cd:40,grace:1.2,ico:'wings',on:'تحليق نشط: ',ready:'تفعيل الطيران (10ث)'},
-  immortal:{dur:10,cd:40,grace:1.2,ico:'shield',on:'درع نشط: ',ready:'تفعيل الدرع الخالد (10ث)'},
-  slowmo:{dur:8,cd:35,grace:0.5,ico:'clock',on:'الزمن بطيء: ',ready:'إبطاء الزمن (8ث)'},
-  score2:{dur:10,cd:35,grace:0,ico:'star',on:'نقاط ×2: ',ready:'تفعيل مضاعف النقاط (10ث)'},
-  shrink:{dur:10,cd:30,grace:0.5,ico:'shrink',on:'تصغير نشط: ',ready:'تفعيل التصغير (10ث)'},
-  ghost:{dur:6,cd:30,grace:0.8,ico:'ghost',on:'وضع الشبح: ',ready:'تفعيل وضع الشبح (6ث)'},
-  superJump:{dur:12,cd:15,grace:0,ico:'rocket',on:'القفزة الخارقة جاهزة: ',ready:'شحن قفزة خارقة'},
-  slam:{dur:4,cd:14,grace:0,ico:'hammer',on:'سحق! ',ready:'سحق أرضي (فعّلها في الهواء)'}
-};
 var CHARIDS=CHARS.map(function(c){return c.id;});
 function charById(id){
   for(var i=0;i<CHARS.length;i++){
@@ -914,7 +997,7 @@ function charById(id){
 }
 
 /* ---------- Saved Progress (Original R Coins & Rewards) ---------- */
-var save={coins:0,gems:0,owned:['redman'],sel:'redman',inv:[],avatar:'redman'};
+var save={coins:0,gems:0,owned:['redman'],sel:'redman',inv:[],avatar:'redman',daily:null,weekly:null,usedCodes:[]};
 try{
   var raw=localStorage.getItem('redman-runner-save');
   if(raw){
@@ -932,6 +1015,9 @@ try{
       if(Array.isArray(o.inv)){
         save.inv=o.inv.filter(function(n){return typeof n==='number'&&n%1===0&&n>=0&&n<10000;}).slice(-300);
       }
+      if(o.daily&&typeof o.daily==='object') save.daily=o.daily;
+      if(o.weekly&&typeof o.weekly==='object') save.weekly=o.weekly;
+      if(Array.isArray(o.usedCodes)) save.usedCodes=o.usedCodes.map(function(x){return String(x).toUpperCase();}).slice(0,100);
     }
   }
 }catch(e){}
@@ -939,7 +1025,7 @@ var persistT=0, persistDirty=false;
 if(window.RM) RM.avatar=save.avatar;
 /* النسخة السحابية من التقدم (العملات، الجواهر، الشخصيات، الجوائز، أعلى نتيجة) */
 function cloudData(ts){
-  return {coins:save.coins,gems:save.gems,owned:save.owned.slice(),sel:save.sel,avatar:save.avatar,inv:save.inv.slice(-300),best:hi|0,ts:ts};
+  return {coins:save.coins,gems:save.gems,owned:save.owned.slice(),sel:save.sel,avatar:save.avatar,inv:save.inv.slice(-300),daily:save.daily,weekly:save.weekly,usedCodes:(save.usedCodes||[]).slice(0,100),best:hi|0,ts:ts};
 }
 function persistNow(){
   persistDirty=false; clearTimeout(persistT); persistT=0;
@@ -966,9 +1052,8 @@ var curSpeed=380, speedRatio=1;
 var shopOpen=false, tab='chars', annc={}, unlockedSkinId=null, claimingLock=false, balAnimRaf=0, displayedBal=0;
 var hi=0;
 try{ hi=parseInt(localStorage.getItem('redman-runner-hi')||'0',10)||0; }catch(e){}
-var man={x:100,y:0,vy:0,air:false,jumps:0,landSquash:0,stridePrev:0,sz:1};
-var abState={active:0,cd:0,grace:0,slam:false,revive:0};
-var holdJump=false, runGems=0;
+var man={x:100,y:0,vy:0,air:false,jumps:0,landSquash:0,stridePrev:0};
+var abState={active:0,cd:0,grace:0};
 var obs=[], collected=[], smashFx=[];
 var word=[], embers=[], confetti=[], wordStep=6, wordCy=0, glow=0;
 var DRESS=['#ff5d8f','#7c5cff','#2ec4b6','#f4a261','#e9ecef','#e05a4f'];
@@ -1125,12 +1210,12 @@ function nextToast(){
 function pushToast(t){ tq.push(t); if(!tBusy) nextToast(); }
 
 var gemBannerTimer=0;
-function showGemBanner(pts,add){
+function showGemBanner(pts){
   var g=save.gems;
   var pct=Math.min(100,Math.round(g/150*100));
   var rem=Math.max(0,150-g);
   gemBannerBadge.textContent='مكافأة نادرة • '+pts+' نقطة';
-  gemBannerTitle.textContent=rem===0?'اكتملت الجواهر لفتح شخصية نادرة!':'ربحت +'+(add||1)+' جوهرة T!';
+  gemBannerTitle.textContent=rem===0?'اكتملت الجواهر لفتح شخصية نادرة!':'ربحت +1 جوهرة T!';
   gemBannerCount.textContent=g+' / 150';
   gemBannerPct.textContent=pct+'%';
   gemBannerFill.style.width=Math.max(3,pct)+'%';
@@ -1182,13 +1267,12 @@ function burst(n){
   }
 }
 function giveGem(){
-  var pts=nextGem, add=1;
-  if(charById(curId()).ability==='gemBonus'){ runGems++; if(runGems%2===0) add=2; }
-  save.gems+=add; persist(); updCoins();
+  var pts=nextGem;
+  save.gems++; persist(); updCoins();
   nextGem+=1500;
   /* heavy visuals/sound run outside the game frame and staggered after the reward effects */
   setTimeout(function(){
-    showGemBanner(pts,add);
+    showGemBanner(pts);
     kick(520);
     burst(55);
     beep(700,1100,.12,'triangle',.05);
@@ -1336,7 +1420,6 @@ function start(){
   curSpeed=getGameSpeed(0); speedRatio=1;
   nextReward=500; rewardN=0; nextGem=1500; collected=[];
   man.y=groundY; man.vy=0; man.air=false; man.jumps=0; man.landSquash=0; man.stridePrev=0;
-  abState.slam=false; abState.revive=(charById(curId()).ability==='lifesaver')?1:0; runGems=0; holdJump=false; man.sz=1;
   abState.active=0; abState.cd=0; abState.grace=0;
   confetti.length=0; shake=0; annc={};
   shelf.innerHTML=''; nextTxt.textContent='الجائزة التالية عند 500';
@@ -1354,6 +1437,8 @@ function die(){
   beep(240,50,.4,'sawtooth',.07);
   kick(900);
   var f=Math.floor(score), prevHi=hi;
+  trackQuest('games',1,false);
+  if(f>0) trackQuest('score_tot',f,false);
   if(f>hi){ hi=f; try{ localStorage.setItem('redman-runner-hi',String(hi)); }catch(e){} }
   hiEl.textContent=fmt(hi);
   if(window.RM && RM.user){ RM.submit(hi).then(function(){ return refreshTop3(true); }); persist(); }
@@ -1395,27 +1480,19 @@ function jump(){
     beep(540,780,.08,'sine',.03);
     return;
   }
-  var maxJumps=(ch.ability==='doubleJump')?2:(ch.ability==='tripleJump'?3:1);
+  var maxJumps=(ch.ability==='doubleJump')?2:1;
   var jumpScale=1 + (speedRatio - 1) * 0.22;
   if(!man.air){
-    var sj=(ch.ability==='superJump' && abState.active>0);
-    man.vy=-800*s*jumpScale*(sj?1.4:1);
+    man.vy=-800*s*jumpScale;
     man.air=true;
     man.jumps=1;
     man.landSquash=-0.22;
     spawnDustPuffs(7,16);
     beep(420,760,.12,'square',.035);
-    if(sj){
-      endAbility();
-      beep(300,1200,.3,'sawtooth',.05);
-      kick(500);
-      for(var rj=0;rj<18;rj++){
-        smashFx.push({x:man.x+(Math.random()-.5)*14*s,y:groundY,vx:(Math.random()-.5)*120*s,vy:(80+Math.random()*220)*s,r:0,vr:5,sz:4+Math.random()*3,c:rj%2?'#f97316':'#fde047',life:0.6});
-      }
-    }
+    trackQuest('jumps',1,false);
   } else if(man.jumps<maxJumps){
     man.vy=-750*s*jumpScale;
-    man.jumps++;
+    man.jumps=2;
     man.landSquash=-0.2;
     beep(580,980,.14,'triangle',.045);
     for(var i=0;i<14;i++){
@@ -1435,66 +1512,25 @@ function jump(){
 }
 
 function release(){
-  holdJump=false;
   var ch=charById(curId());
   if(ch.ability==='fly' && abState.active>0) return;
   var cut=-490*s*(1 + (speedRatio - 1) * 0.22);
   if(man.air && man.vy<cut) man.vy=cut;
 }
 
-function endAbility(){
-  var cfg=ABIL[charById(curId()).ability];
-  abState.active=0; abState.slam=false;
-  abState.cd=cfg?cfg.cd:0;
-  abState.grace=(cfg&&cfg.grace)?cfg.grace:0;
-  beep(380,240,.18,'sine',.04);
-}
-function doSlam(){
-  var reach=300*s;
-  for(var a=0;a<obs.length;a++){
-    var o=obs[a];
-    for(var b=o.items.length-1;b>=0;b--){
-      var it=o.items[b], cx=o.x+it.dx;
-      if(cx>man.x-60*s && cx<man.x+reach){
-        o.items.splice(b,1);
-        for(var k=0;k<12;k++){
-          smashFx.push({x:cx,y:groundY-28*s,vx:(60+Math.random()*300)*s,vy:-(120+Math.random()*320)*s,r:Math.random()*6.28,vr:(Math.random()-.5)*14,sz:5+Math.random()*4,c:k%2?it.color:'#f59e0b',life:0.75});
-        }
-      }
-    }
-  }
-  for(var q=0;q<18;q++){
-    smashFx.push({x:man.x+(q-9)*10*s,y:groundY-2*s,vx:(q-9)*45*s,vy:-(30+Math.random()*90)*s,r:0,vr:5,sz:4,c:'rgba(243,237,230,0.7)',life:0.5});
-  }
-  shake=Math.max(shake,0.9); kick(520);
-  beep(150,40,.3,'sawtooth',.08);
-  endAbility();
-}
 function activateAbility(){
   if(mode!=='running' || shopOpen) return;
-  var ch=charById(curId()), cfg=ABIL[ch.ability];
-  if(!cfg) return;
+  var ch=charById(curId());
+  if(!ch.rare || ch.ability==='doubleJump') return;
   if(abState.active>0 || abState.cd>0) return;
-  if(ch.ability==='slam' && !man.air) return;
-  abState.active=cfg.dur;
+  abState.active=10.0;
   abState.cd=0;
-  abState.slam=false;
   if(ch.ability==='fly'){
     man.air=true;
     man.vy=-420*s;
     beep(440,880,.22,'sine',.05);
   } else if(ch.ability==='immortal'){
     beep(330,660,.22,'triangle',.055);
-  } else if(ch.ability==='slam'){
-    abState.slam=true;
-    man.vy=2000*s;
-    beep(500,120,.25,'sawtooth',.06);
-  } else if(ch.ability==='slowmo'){
-    beep(660,220,.3,'sine',.05);
-  } else if(ch.ability==='ghost'){
-    beep(700,300,.3,'sine',.045);
-  } else {
-    beep(440,880,.18,'triangle',.05);
   }
   kick(380);
   updateAbilityHUD();
@@ -1510,42 +1546,29 @@ function abSet(cls,pct,txt,ico,showKey){
 }
 function updateAbilityHUD(){
   var ch=charById(curId());
-  var hide=(mode!=='running' || !ch.ability);
+  var hide=(mode!=='running' || !ch.rare);
   if(abSig.hid!==hide){ abSig.hid=hide; abilityWrap.hidden=hide; }
   if(hide) return;
-  var ab=ch.ability;
-  if(ab==='doubleJump' || ab==='tripleJump'){
-    var tri=(ab==='tripleJump'), mj=tri?3:2;
-    var canAir=!man.air || man.jumps<mj;
-    var left=man.air?(mj-man.jumps):mj;
-    abSet(canAir?'passive':'cd',canAir?'100%':'50%',
-      canAir?(tri?'قفز ثلاثي جاهز ('+left+'×)':'قفز مزدوج جاهز (2×)'):(tri?'استُهلكت القفزات':'تمت القفزة الثانية'),
-      tri?'bolt':'feather',false);
+  if(ch.ability==='doubleJump'){
+    var canAir=!man.air || man.jumps<2;
+    abSet(canAir?'passive':'cd',canAir?'100%':'50%',canAir?'قفز مزدوج جاهز (2×)':'تمت القفزة الثانية','feather',false);
     return;
   }
-  if(ab==='glide'){ abSet('passive','100%','انزلاق: اضغط مطولاً في الهواء','feather',false); return; }
-  if(ab==='lifesaver'){
-    var rv=abState.revive>0;
-    abSet(rv?'passive':'cd',rv?'100%':'0%',rv?'فرصة ثانية جاهزة (1×)':'استُخدمت الفرصة الثانية','heart',false);
-    return;
-  }
-  if(ab==='gemBonus'){ abSet('passive','100%','حظ الجواهر: جوهرة إضافية كل جوهرتين','gem',false); return; }
-  var cfg=ABIL[ab];
-  if(!cfg) return;
+  var ico=ch.ability==='fly'?'wings':'shield';
   if(abState.active>0){
-    abSet('active',Math.round(abState.active/cfg.dur*200)/2+'%',cfg.on+abState.active.toFixed(1)+'ث',cfg.ico,true);
+    abSet('active',Math.round(abState.active/10*200)/2+'%',(ch.ability==='fly'?'تحليق نشط: ':'درع نشط: ')+abState.active.toFixed(1)+'ث',ico,true);
   } else if(abState.cd>0){
-    abSet('cd',Math.round((cfg.cd-abState.cd)/cfg.cd*200)/2+'%','إعادة الشحن: '+Math.ceil(abState.cd)+'ث',cfg.ico,true);
+    abSet('cd',Math.round((40-abState.cd)/40*200)/2+'%','إعادة الشحن: '+Math.ceil(abState.cd)+'ث',ico,true);
   } else {
-    abSet('ready','100%',cfg.ready,cfg.ico,true);
+    abSet('ready','100%',ch.ability==='fly'?'تفعيل الطيران (10ث)':'تفعيل الدرع الخالد (10ث)',ico,true);
   }
 }
 
 function press(){
   if(shopOpen || unlockedSkinId) return;
   if(mode==='intro'){ finishIntro(); return; }
-  if(mode==='ready'){ start(); holdJump=true; jump(); }
-  else if(mode==='running'){ holdJump=true; jump(); }
+  if(mode==='ready'){ start(); jump(); }
+  else if(mode==='running'){ jump(); }
   else if(mode==='over' && performance.now()-overAt>450){ start(); }
 }
 
@@ -1603,13 +1626,9 @@ function update(dt){
   time+=dt;
   curSpeed=getGameSpeed(score);
   speedRatio=curSpeed/380;
-  var ch0=charById(curId()), act0=abState.active>0;
-  var slowOn=(ch0.ability==='slowmo' && act0), s2On=(ch0.ability==='score2' && act0);
-  var shrOn=(ch0.ability==='shrink' && act0), ghostOn=(ch0.ability==='ghost' && act0);
-  var spN=curSpeed*s, sp=spN*(slowOn?0.55:1);
+  var sp=curSpeed*s;
   dist+=sp*dt;
-  score+=(spN*dt/(s*11.5))*(1 + (speedRatio - 1) * 0.15)*(s2On?2:1);
-  man.sz+=((shrOn?0.7:1)-man.sz)*Math.min(1,dt*10);
+  score+=(sp*dt/(s*11.5))*(1 + (speedRatio - 1) * 0.15);
 
   if(man.landSquash!==0){
     man.landSquash-=man.landSquash*Math.min(1,dt*14);
@@ -1625,7 +1644,12 @@ function update(dt){
   if(abState.grace>0) abState.grace=Math.max(0,abState.grace-dt);
   if(abState.active>0){
     abState.active-=dt;
-    if(abState.active<=0) endAbility();
+    if(abState.active<=0){
+      abState.active=0;
+      abState.cd=40.0;
+      abState.grace=1.2;
+      beep(380,240,.18,'sine',.04);
+    }
   } else if(abState.cd>0){
     abState.cd=Math.max(0,abState.cd-dt);
     if(abState.cd===0){
@@ -1650,17 +1674,12 @@ function update(dt){
   } else {
     var gravScale=1 + (speedRatio - 1) * 0.48;
     var g=2400*s*gravScale*((down&&man.air)?2.5:1);
-    if(ch.ability==='glide' && holdJump && man.air && man.vy>0){
-      g*=0.2;
-      if(man.vy>300*s) man.vy=300*s;
-    }
     man.vy+=g*dt; man.y+=man.vy*dt;
     if(man.y>=groundY){
       if(man.air){
         man.landSquash=Math.min(0.26,Math.max(0.1,man.vy/(2800*s)));
         spawnDustPuffs(6,14);
       }
-      if(abState.slam) doSlam();
       man.y=groundY; man.vy=0; man.air=false; man.jumps=0;
     }
   }
@@ -1675,18 +1694,17 @@ function update(dt){
   }
 
   for(var i=0;i<obs.length;i++) obs[i].x-=sp*dt;
-  while(obs.length && obs[0].x+obs[0].w<-30) obs.shift();
+  while(obs.length && obs[0].x+obs[0].w<-30){ var passedObs=obs.shift(); if(passedObs&&passedObs.items&&passedObs.items.length) trackQuest('dodge',passedObs.items.length,false); }
   gapLeft-=sp*dt;
-  if(gapLeft<=0) spawn(spN);
+  if(gapLeft<=0) spawn(sp);
 
-  var isImmortal=(ch.ability==='immortal' && abState.active>0) || abState.grace>0 || abState.slam;
-  var hw=(shrOn?3:8)*s, oh=shrOn?40:54;
-  var mx1=man.x-hw, mx2=man.x+hw, feet=man.y-3*s;
+  var isImmortal=(ch.ability==='immortal' && abState.active>0) || abState.grace>0;
+  var mx1=man.x-8*s, mx2=man.x+8*s, feet=man.y-3*s;
   for(var a=0;a<obs.length;a++){
     var o=obs[a];
     for(var b=o.items.length-1;b>=0;b--){
       var it=o.items[b], cx=o.x+it.dx;
-      if(!ghostOn && mx2>cx-7*s && mx1<cx+7*s && feet>groundY-oh*it.k*s){
+      if(mx2>cx-7*s && mx1<cx+7*s && feet>groundY-54*it.k*s){
         if(isImmortal){
           o.items.splice(b,1);
           shake=0.35;
@@ -1699,20 +1717,14 @@ function update(dt){
               c:k%2?it.color:'#fbbf24', life:0.75
             });
           }
-        } else if(abState.revive>0){
-          abState.revive--; abState.grace=2.0; shake=0.8;
-          o.items.splice(b,1);
-          beep(330,880,.3,'triangle',.06);
-          for(var rv2=0;rv2<20;rv2++){
-            smashFx.push({x:man.x+(Math.random()-.5)*20*s,y:man.y-30*s,vx:(Math.random()-.5)*320*s,vy:-(60+Math.random()*260)*s,r:Math.random()*6.28,vr:(Math.random()-.5)*10,sz:4+Math.random()*4,c:rv2%2?'#fef08a':'#ffffff',life:0.8});
-          }
-          pushToast({cls:'unlock',kind:'فرصة ثانية',title:'أنقذك الملاك الحارس',sub:'استُخدمت الفرصة الثانية في هذه الجولة',icon:'heart'});
         } else {
           die(); return;
         }
       }
     }
   }
+  trackQuest('score_run',score,true);
+  trackQuest('survive',time,true);
   if(score>=nextReward) giveReward();
   while(score>=nextGem) giveGem();
   for(var u=0;u<CHARS.length;u++){
@@ -1738,19 +1750,23 @@ var PAL={
   shadow:{skin:'#18181f',hand:'#272732',shirt:'#121218',stripe:'#a855f7',armF:'#1f1f29',armB:'#0d0d12',legF:'#181822',legB:'#0d0d12',shoe:'#ef4444'},
   falcon:{skin:'#e8b98f',hand:'#f59e0b',shirt:'#fef3c7',stripe:'#d97706',armF:'#fde68a',armB:'#d97706',legF:'#78350f',legB:'#451a03',shoe:'#f59e0b'},
   skyknight:{skin:'#e8b98f',hand:'#38bdf8',shirt:'#0284c7',stripe:'#fbbf24',armF:'#38bdf8',armB:'#0369a1',legF:'#1e3a8a',legB:'#172554',shoe:'#38bdf8'},
-  immortal:{skin:'#e8b98f',hand:'#e2e8f0',shirt:'#4c1d95',stripe:'#fbbf24',armF:'#cbd5e1',armB:'#64748b',legF:'#312e81',legB:'#1e1b4b',shoe:'#fbbf24'}
+  immortal:{skin:'#e8b98f',hand:'#e2e8f0',shirt:'#4c1d95',stripe:'#fbbf24',armF:'#cbd5e1',armB:'#64748b',legF:'#312e81',legB:'#1e1b4b',shoe:'#fbbf24'},
+  crimson_demon:{skin:'#dc2626',hand:'#991b1b',shirt:'#450a0a',stripe:'#f97316',armF:'#b91c1c',armB:'#7f1d1d',legF:'#1c1917',legB:'#0c0a09',shoe:'#f97316'},
+  thunder_lord:{skin:'#e8b98f',hand:'#facc15',shirt:'#1e3a8a',stripe:'#38bdf8',armF:'#2563eb',armB:'#1d4ed8',legF:'#0f172a',legB:'#020617',shoe:'#facc15'},
+  void_emperor:{skin:'#3b0764',hand:'#a855f7',shirt:'#09090b',stripe:'#c084fc',armF:'#18181b',armB:'#09090b',legF:'#27272a',legB:'#09090b',shoe:'#a855f7'},
+  solar_phoenix:{skin:'#fed7aa',hand:'#fb923c',shirt:'#ea580c',stripe:'#fef08a',armF:'#f97316',armB:'#c2410c',legF:'#9a3412',legB:'#7c2d12',shoe:'#fef08a'},
+  frost_monarch:{skin:'#cffafe',hand:'#67e8f9',shirt:'#0e7490',stripe:'#ffffff',armF:'#06b6d4',armB:'#155e75',legF:'#164e63',legB:'#083344',shoe:'#e0f2fe'},
+  neon_phantom:{skin:'#111827',hand:'#ec4899',shirt:'#09090b',stripe:'#22d3ee',armF:'#18181b',armB:'#09090b',legF:'#18181b',legB:'#09090b',shoe:'#ec4899'},
+  abyss_dragon:{skin:'#064e3b',hand:'#10b981',shirt:'#022c22',stripe:'#f59e0b',armF:'#065f46',armB:'#022c22',legF:'#0f172a',legB:'#020617',shoe:'#f59e0b'},
+  star_guardian:{skin:'#fde68a',hand:'#ffffff',shirt:'#312e81',stripe:'#f472b6',armF:'#4338ca',armB:'#312e81',legF:'#1e1b4b',legB:'#0f172a',shoe:'#fde68a'},
+  omega_titan:{skin:'#94a3b8',hand:'#ef4444',shirt:'#334155',stripe:'#ef4444',armF:'#64748b',armB:'#475569',legF:'#1e293b',legB:'#0f172a',shoe:'#ef4444'},
+  emerald_viper:{skin:'#a7f3d0',hand:'#059669',shirt:'#065f46',stripe:'#a3e635',armF:'#047857',armB:'#064e3b',legF:'#022c22',legB:'#021a14',shoe:'#a3e635'},
+  blood_moon:{skin:'#fecdd3',hand:'#e11d48',shirt:'#881337',stripe:'#fda4af',armF:'#9f1239',armB:'#4c0519',legF:'#1f2937',legB:'#111827',shoe:'#fb7185'},
+  chrono_knight:{skin:'#e8b98f',hand:'#fbbf24',shirt:'#78350f',stripe:'#38bdf8',armF:'#b45309',armB:'#78350f',legF:'#451a03',legB:'#290f02',shoe:'#38bdf8'},
+  inferno_king:{skin:'#fdba74',hand:'#dc2626',shirt:'#7f1d1d',stripe:'#facc15',armF:'#991b1b',armB:'#450a0a',legF:'#1c1917',legB:'#0c0a09',shoe:'#facc15'},
+  celestial_angel:{skin:'#fffbeb',hand:'#fde047',shirt:'#f8fafc',stripe:'#fbbf24',armF:'#e2e8f0',armB:'#cbd5e1',legF:'#f1f5f9',legB:'#cbd5e1',shoe:'#fbbf24'},
+  obsidian_god:{skin:'#27272a',hand:'#f43f5e',shirt:'#09090b',stripe:'#f43f5e',armF:'#18181b',armB:'#000000',legF:'#18181b',legB:'#000000',shoe:'#f43f5e'}
 };
-
-PAL.spring={skin:'#e8b98f',hand:'#22c55e',shirt:'#16a34a',stripe:'#fde047',armF:'#22c55e',armB:'#15803d',legF:'#14532d',legB:'#052e16',shoe:'#fde047'};
-PAL.glider={skin:'#e8b98f',hand:'#fb923c',shirt:'#f97316',stripe:'#ffffff',armF:'#fb923c',armB:'#c2410c',legF:'#78350f',legB:'#451a03',shoe:'#ffffff'};
-PAL.angel={skin:'#f1c9a5',hand:'#f1c9a5',shirt:'#ffffff',stripe:'#fde68a',armF:'#fff7ed',armB:'#e5e7eb',legF:'#f8fafc',legB:'#cbd5e1',shoe:'#fde68a'};
-PAL.merchant={skin:'#d9a273',hand:'#d9a273',shirt:'#0f766e',stripe:'#fbbf24',armF:'#14b8a6',armB:'#0f766e',legF:'#7c2d12',legB:'#431407',shoe:'#fbbf24'};
-PAL.timelord={skin:'#e8b98f',hand:'#a5b4fc',shirt:'#312e81',stripe:'#22d3ee',armF:'#4338ca',armB:'#1e1b4b',legF:'#1e1b4b',legB:'#0f0d2e',shoe:'#22d3ee'};
-PAL.tycoon={skin:'#e8b98f',hand:'#e8b98f',shirt:'#111827',stripe:'#facc15',armF:'#1f2937',armB:'#0b0f19',legF:'#1f2937',legB:'#0b0f19',shoe:'#facc15'};
-PAL.mini={skin:'#e8b98f',hand:'#f9a8d4',shirt:'#ec4899',stripe:'#fdf2f8',armF:'#f472b6',armB:'#be185d',legF:'#831843',legB:'#500724',shoe:'#fdf2f8'};
-PAL.rocket={skin:'#e8b98f',hand:'#e5e7eb',shirt:'#dc2626',stripe:'#f9fafb',armF:'#ef4444',armB:'#991b1b',legF:'#e5e7eb',legB:'#9ca3af',shoe:'#f97316'};
-PAL.titan={skin:'#c08457',hand:'#c08457',shirt:'#57534e',stripe:'#f59e0b',armF:'#c08457',armB:'#92613c',legF:'#44403c',legB:'#292524',shoe:'#f59e0b'};
-PAL.phantom={skin:'#c7d2fe',hand:'#e0e7ff',shirt:'#c7d2fe',stripe:'#818cf8',armF:'#e0e7ff',armB:'#a5b4fc',legF:'#c7d2fe',legB:'#a5b4fc',shoe:'#818cf8'};
 
 function rrect(c,x,y,w,h,r){
   c.beginPath();
@@ -1818,7 +1834,22 @@ var BACK={
     var w=Math.sin(t*11)*4.5;
     c.fillStyle='#5b21b6'; c.strokeStyle='#fbbf24'; c.lineWidth=1;
     c.beginPath(); c.moveTo(-2,-48); c.quadraticCurveTo(-15+w,-36,-20+w*1.4,-16); c.lineTo(-10+w,-17); c.quadraticCurveTo(-4,-29,2,-29); c.closePath(); c.fill(); c.stroke();
-  }
+  },
+  crimson_demon:function(c,t){ BACK.falcon(c,t); },
+  thunder_lord:function(c,t){ BACK.skyknight(c,t); },
+  void_emperor:function(c,t){ BACK.shadow(c,t); },
+  solar_phoenix:function(c,t){ BACK.falcon(c,t); },
+  frost_monarch:function(c,t){ BACK.king(c,t); },
+  neon_phantom:function(c,t){ BACK.shadow(c,t); },
+  abyss_dragon:function(c,t){ BACK.falcon(c,t); },
+  star_guardian:function(c,t){ BACK.skyknight(c,t); },
+  omega_titan:function(c,t){ BACK.astro(c,t); },
+  emerald_viper:function(c,t){ BACK.samurai(c,t); },
+  blood_moon:function(c,t){ BACK.king(c,t); },
+  chrono_knight:function(c,t){ BACK.immortal(c,t); },
+  inferno_king:function(c,t){ BACK.king(c,t); },
+  celestial_angel:function(c,t){ BACK.skyknight(c,t); },
+  obsidian_god:function(c,t){ BACK.shadow(c,t); }
 };
 
 var HEAD={
@@ -1943,105 +1974,64 @@ var HEAD={
     c.fillStyle='#fbbf24'; c.fillRect(-4.5,-61,15,2.6);
     c.beginPath(); c.moveTo(3,-64); c.lineTo(5,-69); c.lineTo(7,-64); c.closePath(); c.fill();
     eye(c,dead,6.8,-56);
+  },
+  crimson_demon:function(c,t,dead,P){
+    c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.3,0,6.283); c.fill();
+    c.fillStyle='#fbbf24';
+    c.beginPath(); c.moveTo(1,-62); c.quadraticCurveTo(-4,-69,-1,-73); c.lineTo(3,-63); c.closePath(); c.fill();
+    c.beginPath(); c.moveTo(6,-62); c.quadraticCurveTo(11,-69,8,-73); c.lineTo(4,-63); c.closePath(); c.fill();
+    eye(c,dead,7,-56,'#fef08a');
+  },
+  thunder_lord:function(c,t,dead,P){
+    HEAD.skyknight(c,t,dead,P);
+    c.strokeStyle='#facc15'; c.lineWidth=1.8;
+    c.beginPath(); c.moveTo(4,-64); c.lineTo(1,-69); c.lineTo(6,-69); c.lineTo(3,-74); c.stroke();
+  },
+  void_emperor:function(c,t,dead,P){
+    HEAD.shadow(c,t,dead,P);
+    c.fillStyle='#c084fc'; c.beginPath(); c.arc(3,-68,2.4,0,6.283); c.fill();
+  },
+  solar_phoenix:function(c,t,dead,P){ HEAD.falcon(c,t,dead,P); },
+  frost_monarch:function(c,t,dead,P){
+    HEAD.king(c,t,dead,P);
+    c.fillStyle='#67e8f9'; c.fillRect(-2.5,-63,12,2.5);
+  },
+  neon_phantom:function(c,t,dead,P){
+    HEAD.cyborg(c,t,dead,P);
+    c.fillStyle='#ec4899'; c.fillRect(3.5,-58.5,6.8,3.2);
+  },
+  abyss_dragon:function(c,t,dead,P){
+    HEAD.samurai(c,t,dead,P);
+    c.fillStyle='#10b981'; c.beginPath(); c.arc(7,-56.8,1.5,0,6.283); c.fill();
+  },
+  star_guardian:function(c,t,dead,P){
+    HEAD.astro(c,t,dead,P);
+    c.fillStyle='#f472b6'; c.beginPath(); c.arc(3,-67,2.2,0,6.283); c.fill();
+  },
+  omega_titan:function(c,t,dead,P){ HEAD.robot(c,t,dead,P); },
+  emerald_viper:function(c,t,dead,P){
+    HEAD.ninja(c,t,dead,P);
+    c.fillStyle='#a3e635'; c.fillRect(-4.4,-63,15.2,3);
+  },
+  blood_moon:function(c,t,dead,P){
+    HEAD.pirate(c,t,dead,P);
+    c.fillStyle='#fb7185'; c.beginPath(); c.arc(4.5,-63,2,0,6.283); c.fill();
+  },
+  chrono_knight:function(c,t,dead,P){ HEAD.immortal(c,t,dead,P); },
+  inferno_king:function(c,t,dead,P){
+    HEAD.king(c,t,dead,P);
+    c.fillStyle='#ef4444'; c.beginPath(); c.arc(3.5,-66,2.2,0,6.283); c.fill();
+  },
+  celestial_angel:function(c,t,dead,P){
+    c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.1,0,6.283); c.fill();
+    c.strokeStyle='#fbbf24'; c.lineWidth=2;
+    c.beginPath(); c.ellipse(3,-66,6.5,2,0,0,6.283); c.stroke();
+    eye(c,dead,7,-56);
+  },
+  obsidian_god:function(c,t,dead,P){
+    HEAD.pharaoh(c,t,dead,P);
+    c.fillStyle='#f43f5e'; c.beginPath(); c.arc(7,-61.5,2.3,0,6.283); c.fill();
   }
-};
-
-HEAD.spring=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
-  c.fillStyle='#16a34a'; c.beginPath(); c.arc(3,-57,7.6,Math.PI,0); c.closePath(); c.fill();
-  var zz=Math.sin(t*10)*1.5;
-  c.strokeStyle='#fde047'; c.lineWidth=1.6;
-  c.beginPath(); c.moveTo(3,-64); c.lineTo(1+zz,-66.5); c.lineTo(5+zz,-68.5); c.lineTo(1+zz,-70.5); c.stroke();
-  c.fillStyle='#fde047'; c.beginPath(); c.arc(3+zz,-72,1.8,0,6.283); c.fill();
-  eye(c,dead,7,-56);
-};
-HEAD.glider=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
-  c.fillStyle='#f97316'; c.beginPath(); c.arc(3,-57,7.8,Math.PI,0); c.closePath(); c.fill();
-  c.fillStyle=dead?'#64748b':'#0ea5e9'; c.fillRect(2.5,-58.8,8,3.4);
-  c.fillStyle='#bae6fd'; if(!dead) c.fillRect(7,-58,2.6,1.4);
-  c.strokeStyle='#ffffff'; c.lineWidth=1.4; c.beginPath(); c.moveTo(-3,-58); c.lineTo(2.5,-57.2); c.stroke();
-};
-HEAD.angel=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
-  c.fillStyle='#fde68a'; c.beginPath(); c.arc(2.5,-57.5,7.6,Math.PI*1.02,Math.PI*1.98); c.closePath(); c.fill();
-  c.strokeStyle='#fde047'; c.lineWidth=1.9;
-  c.beginPath(); c.ellipse(3,-67+Math.sin(t*5)*0.8,6,1.9,0,0,6.283); c.stroke();
-  eye(c,dead,7,-56);
-};
-HEAD.merchant=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
-  c.fillStyle='#0f766e'; c.beginPath(); c.arc(3,-58,8,Math.PI,0); c.lineTo(11,-57); c.lineTo(-5,-57); c.closePath(); c.fill();
-  c.fillStyle='#fbbf24'; c.beginPath(); c.arc(3,-64.5,2,0,6.283); c.fill();
-  c.fillStyle='#3b2a1a'; c.beginPath(); c.arc(4.5,-52.5,4.6,0.2*Math.PI,0.8*Math.PI); c.closePath(); c.fill();
-  eye(c,dead,7,-56);
-};
-HEAD.timelord=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
-  c.fillStyle='#312e81'; c.beginPath(); c.moveTo(-6,-60); c.lineTo(4,-76); c.lineTo(12,-60); c.closePath(); c.fill();
-  c.fillRect(-7,-61,20,2.4);
-  c.fillStyle='#22d3ee'; c.beginPath(); c.arc(4,-66,1.8,0,6.283); c.fill();
-  eye(c,dead,7,-56);
-};
-HEAD.tycoon=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
-  c.fillStyle='#0b0f19'; c.fillRect(-3,-71,13,10); c.fillRect(-6.5,-62,20,2.4);
-  c.fillStyle='#facc15'; c.fillRect(-3,-65,13,2.2);
-  c.strokeStyle='#facc15'; c.lineWidth=1.1; c.beginPath(); c.arc(7.4,-55.5,2.8,0,6.283); c.stroke();
-  eye(c,dead,7.2,-56);
-};
-HEAD.mini=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.2,0,6.283); c.fill();
-  c.fillStyle='#be185d'; c.beginPath(); c.arc(3,-57.5,7.7,Math.PI,0); c.closePath(); c.fill();
-  c.fillStyle='#f472b6'; c.beginPath(); c.arc(3,-66,3.6,0,6.283); c.fill();
-  eye(c,dead,7,-56);
-};
-HEAD.rocket=function(c,t,dead,P){
-  c.fillStyle='#dc2626'; c.beginPath(); c.arc(3,-57,8.2,0,6.283); c.fill();
-  c.fillStyle='#f9fafb'; c.fillRect(-5,-61,16,2.2);
-  c.fillStyle=dead?'#475569':'#38bdf8'; c.beginPath(); c.ellipse(6,-56,4.6,3.8,0,0,6.283); c.fill();
-  c.fillStyle='#dc2626'; c.beginPath(); c.moveTo(-2,-63); c.lineTo(3,-75); c.lineTo(8,-63); c.closePath(); c.fill();
-};
-HEAD.titan=function(c,t,dead,P){
-  c.fillStyle=P.skin; c.beginPath(); c.arc(3,-56,7.8,0,6.283); c.fill();
-  c.fillStyle='#292524'; c.beginPath(); c.arc(4,-52.5,6.4,0.1*Math.PI,0.9*Math.PI); c.closePath(); c.fill();
-  c.fillStyle='#9ca3af'; c.fillRect(-4.8,-62,16,2.8);
-  c.strokeStyle='#1b1512'; c.lineWidth=1.4; c.beginPath(); c.moveTo(4.5,-59.2); c.lineTo(9.5,-57.8); c.stroke();
-  eye(c,dead,7.2,-56.5);
-};
-HEAD.phantom=function(c,t,dead,P){
-  c.fillStyle='#e0e7ff'; c.strokeStyle='#818cf8'; c.lineWidth=1.1;
-  c.beginPath(); c.arc(3,-56,8,Math.PI,0); c.lineTo(11,-48); c.lineTo(7,-50); c.lineTo(3,-48); c.lineTo(-1,-50); c.lineTo(-5,-48); c.closePath(); c.fill(); c.stroke();
-  c.fillStyle='#1e1b4b';
-  c.beginPath(); c.ellipse(1,-56,1.6,2.4,0,0,6.283); c.ellipse(7,-56,1.6,2.4,0,0,6.283); c.fill();
-};
-BACK.angel=function(c,t){
-  var fl=Math.sin(t*14)*6;
-  c.fillStyle='#ffffff'; c.strokeStyle='#e5e7eb'; c.lineWidth=1;
-  c.beginPath(); c.moveTo(-2,-46); c.quadraticCurveTo(-18,-62+fl,-27,-42+fl); c.quadraticCurveTo(-14,-36,-3,-37); c.closePath(); c.fill(); c.stroke();
-  c.fillStyle='#fde68a';
-  c.beginPath(); c.moveTo(-3,-43); c.quadraticCurveTo(-13,-51+fl,-19,-40+fl); c.lineTo(-4,-38); c.closePath(); c.fill();
-};
-BACK.glider=function(c,t){
-  var sw=Math.sin(t*9)*2;
-  c.strokeStyle='#fde68a'; c.lineWidth=0.9;
-  c.beginPath(); c.moveTo(-2,-44); c.lineTo(-16+sw,-64); c.moveTo(-2,-40); c.lineTo(-4+sw,-64); c.stroke();
-  c.fillStyle='#fb923c'; c.strokeStyle='#c2410c'; c.lineWidth=1;
-  c.beginPath(); c.moveTo(-20+sw,-62); c.quadraticCurveTo(-11+sw,-76,0+sw,-62); c.closePath(); c.fill(); c.stroke();
-  c.fillStyle='#ffffff'; c.beginPath(); c.moveTo(-12+sw,-64); c.quadraticCurveTo(-10+sw,-72,-8+sw,-64); c.closePath(); c.fill();
-};
-BACK.merchant=function(c,t){
-  c.fillStyle='#a16207'; c.strokeStyle='#713f12'; c.lineWidth=1;
-  c.beginPath(); c.arc(-9,-37,7.5,0,6.283); c.fill(); c.stroke();
-  c.fillStyle='#fbbf24'; c.beginPath(); c.arc(-9,-37,3,0,6.283); c.fill();
-  c.strokeStyle='#713f12'; c.beginPath(); c.moveTo(-12,-44); c.lineTo(-6,-44); c.stroke();
-};
-BACK.rocket=function(c,t,P){
-  c.fillStyle='#e5e7eb'; c.strokeStyle='#9ca3af'; c.lineWidth=1;
-  c.beginPath(); c.rect(-12,-50,8,19); c.fill(); c.stroke();
-  c.fillStyle='#dc2626'; c.fillRect(-12,-50,8,4);
-  c.fillStyle='#f97316'; c.globalAlpha=0.7+0.3*Math.sin(t*25);
-  c.beginPath(); c.moveTo(-11,-31); c.lineTo(-8,-31+6+Math.sin(t*30)*2); c.lineTo(-5,-31); c.closePath(); c.fill(); c.globalAlpha=1;
 };
 
 function drawChar(c,id,x,y,sc,t,pose,isLive){
@@ -2084,25 +2074,7 @@ function drawChar(c,id,x,y,sc,t,pose,isLive){
       c.lineWidth=2;
       c.beginPath(); c.ellipse(0,-34,28,36+Math.sin(t*10)*2,0,0,6.283); c.stroke();
       c.restore();
-    } else if(id==='timelord' && abState.active>0){
-      c.save(); c.strokeStyle='rgba(34,211,238,0.85)'; c.fillStyle='rgba(34,211,238,0.10)'; c.lineWidth=2;
-      c.beginPath(); c.arc(1,-36,32+Math.sin(t*5)*3,0,6.283); c.fill(); c.stroke();
-      c.beginPath(); c.moveTo(1,-36); c.lineTo(1+Math.cos(t*3)*22,-36+Math.sin(t*3)*22); c.stroke();
-      c.restore();
-    } else if(id==='tycoon' && abState.active>0){
-      c.save(); c.strokeStyle='rgba(250,204,21,0.9)'; c.fillStyle='rgba(250,204,21,0.12)'; c.lineWidth=2.2;
-      c.beginPath(); c.arc(1,-36,33+Math.sin(t*9)*2,0,6.283); c.fill(); c.stroke();
-      c.restore();
-    } else if(id==='rocket' && abState.active>0){
-      c.save(); c.fillStyle='rgba(249,115,22,0.35)';
-      c.beginPath(); c.ellipse(-4,-6,9,16+Math.sin(t*30)*4,0,0,6.283); c.fill();
-      c.restore();
-    } else if(id==='titan' && abState.slam){
-      c.save(); c.strokeStyle='rgba(245,158,11,0.9)'; c.lineWidth=3;
-      c.beginPath(); c.moveTo(-8,-90); c.lineTo(-8,-62); c.moveTo(2,-100); c.lineTo(2,-66); c.moveTo(12,-90); c.lineTo(12,-62); c.stroke();
-      c.restore();
     }
-    if(id==='phantom') c.globalAlpha=(abState.active>0)?0.42:0.85;
   }
 
   c.translate(0,bob);
@@ -2529,7 +2501,7 @@ function render(){
   ctx.fill();
 
   var pose=mode==='over'?'dead':((charById(curId()).ability==='fly'&&abState.active>0)?'air':(man.air?'air':(mode==='running'?'run':'idle')));
-  drawChar(ctx,curId(),man.x,man.y,s*man.sz,clock,pose,true);
+  drawChar(ctx,curId(),man.x,man.y,s,clock,pose,true);
   drawConfetti();
   ctx.restore();
   var sc=fmt(score);
@@ -2642,8 +2614,8 @@ function launchExchangeCoins(btnEl,gainAmount,prevCoins,newCoins,onComplete){
 
 function showUnlockCelebration(charObj){
   unlockedSkinId=charObj.id;
-  unlockCard.className='unlock-card'+((charObj.rare||charObj.secret)?' rare':'');
-  unlockBadge.textContent=charObj.secret?'سكن سري من كود ★':(charObj.rare?'شخصية نادرة أسطورية ★':'سكن جديد مضاف لمجموعتك');
+  unlockCard.className='unlock-card'+(charObj.rare?' rare':'');
+  unlockBadge.textContent=charObj.rare?'شخصية نادرة أسطورية ★':'سكن جديد مضاف لمجموعتك';
   unlockName.textContent=charObj.name;
   unlockDesc.textContent=charObj.desc;
   if(charObj.abLabel){
@@ -2688,13 +2660,306 @@ function drawUnlockPreview(){
 }
 
 /* ---------- Shop ---------- */
+
+/* ---------- Daily Missions & Weekly Check-In System ---------- */
+var DAILY_POOL=[
+  {id:'score_run',  t:'حقق %v نقطة في جولة واحدة',        vals:[600,1000,1500,2200], rw:[{k:'c',v:90},{k:'c',v:140},{k:'c',v:200},{k:'g',v:2}]},
+  {id:'score_tot',  t:'اجمع %v نقطة إجمالية اليوم',        vals:[2000,3500,5000,7500],rw:[{k:'c',v:110},{k:'c',v:160},{k:'c',v:230},{k:'g',v:3}]},
+  {id:'jumps',      t:'اقفز %v مرة أثناء الجري',           vals:[25,45,70,100],      rw:[{k:'c',v:80},{k:'c',v:120},{k:'c',v:170},{k:'c',v:240}]},
+  {id:'dodge',      t:'تجاوز %v من السيدات بنجاح',         vals:[20,35,55,80],       rw:[{k:'c',v:95},{k:'c',v:145},{k:'c',v:210},{k:'g',v:2}]},
+  {id:'games',      t:'العب %v جولات كاملة اليوم',         vals:[3,5,7,10],          rw:[{k:'c',v:85},{k:'c',v:130},{k:'c',v:190},{k:'g',v:2}]},
+  {id:'survive',    t:'اصمد لمدة %v ثانية في جولة واحدة',  vals:[30,50,75,100],      rw:[{k:'c',v:100},{k:'c',v:150},{k:'c',v:220},{k:'g',v:3}]}
+];
+
+var WEEKLY_REWARDS=[
+  {day:1,k:'c',v:100,label:'اليوم 1'},
+  {day:2,k:'c',v:180,label:'اليوم 2'},
+  {day:3,k:'g',v:2,  label:'اليوم 3'},
+  {day:4,k:'c',v:300,label:'اليوم 4'},
+  {day:5,k:'g',v:4,  label:'اليوم 5'},
+  {day:6,k:'c',v:500,label:'اليوم 6'},
+  {day:7,k:'g',v:10, label:'اليوم 7 ★'}
+];
+
+function getDayKey(d){
+  d=d||new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+
+function getWeekKey(d){
+  d=d||new Date();
+  var dt=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+  var day=(dt.getDay()+6)%7;
+  dt.setDate(dt.getDate()-day);
+  return getDayKey(dt);
+}
+
+function hashStr(str){
+  var h=2166136261;
+  for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+  return h>>>0;
+}
+
+function buildDailyMissions(dayKey){
+  var seed=hashStr('RM-DAILY-'+dayKey);
+  var pool=DAILY_POOL.slice(), list=[];
+  for(var i=0;i<3;i++){
+    seed=(seed*1664525+1013904223)>>>0;
+    var idx=seed%pool.length;
+    var tpl=pool.splice(idx,1)[0];
+    seed=(seed*1664525+1013904223)>>>0;
+    var tier=(i===2)?(2+(seed%2)):(seed%3);
+    var target=tpl.vals[tier];
+    var rw=tpl.rw[tier];
+    list.push({
+      id:tpl.id,
+      title:tpl.t.replace('%v',target),
+      target:target,
+      prog:0,
+      rwK:rw.k,
+      rwV:rw.v,
+      claimed:false
+    });
+  }
+  return {date:dayKey,list:list};
+}
+
+function ensureQuestsReset(silent){
+  var changed=false;
+  var dk=getDayKey(), wk=getWeekKey();
+  if(!save.daily || save.daily.date!==dk || !Array.isArray(save.daily.list) || save.daily.list.length!==3){
+    save.daily=buildDailyMissions(dk);
+    changed=true;
+  }
+  if(!save.weekly || save.weekly.week!==wk || typeof save.weekly.claimedDays!=='number'){
+    save.weekly={week:wk,claimedDays:0,lastClaimDate:''};
+    changed=true;
+  }
+  if(changed){
+    persist();
+    updQuestBadges();
+    if(!silent && shopOpen && tab==='quests' && !claimingLock) renderShop();
+  }
+  return changed;
+}
+
+function canClaimWeeklyToday(){
+  ensureQuestsReset(true);
+  return save.weekly.claimedDays<7 && save.weekly.lastClaimDate!==getDayKey();
+}
+
+function countReadyQuests(){
+  ensureQuestsReset(true);
+  var n=canClaimWeeklyToday()?1:0;
+  for(var i=0;i<save.daily.list.length;i++){
+    var m=save.daily.list[i];
+    if(!m.claimed && m.prog>=m.target) n++;
+  }
+  return n;
+}
+
+function updQuestBadges(){
+  var n=countReadyQuests();
+  if(questBadge){ questBadge.textContent=n; questBadge.hidden=!n; }
+  if(qTabN){ qTabN.textContent=n?'('+n+')':''; }
+}
+
+function trackQuest(type,val,isMax){
+  ensureQuestsReset(true);
+  var dirty=false;
+  for(var i=0;i<save.daily.list.length;i++){
+    var m=save.daily.list[i];
+    if(m.id!==type || m.claimed) continue;
+    var prev=m.prog;
+    m.prog=isMax?Math.max(m.prog,Math.floor(val)):(m.prog+val);
+    if(m.prog>m.target) m.prog=m.target;
+    if(m.prog!==prev) dirty=true;
+    if(prev<m.target && m.prog>=m.target){
+      pushToast({
+        cls:'gift',
+        kind:'مهمة يومية مكتملة!',
+        title:m.title,
+        sub:'افتح قائمة المهمات لاستلام '+(m.rwK==='g'?m.rwV+' جوهرة T':m.rwV+' R'),
+        icon:'star'
+      });
+    }
+  }
+  if(dirty){ persist(); updQuestBadges(); }
+}
+
+function getResetCountdowns(){
+  var now=new Date();
+  var nextDay=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,0);
+  var dMs=Math.max(0,nextDay-now);
+  var dh=Math.floor(dMs/3600000), dm=Math.floor((dMs%3600000)/60000), ds=Math.floor((dMs%60000)/1000);
+
+  var dayIdx=(now.getDay()+6)%7;
+  var nextWeek=new Date(now.getFullYear(),now.getMonth(),now.getDate()+(7-dayIdx),0,0,0);
+  var wMs=Math.max(0,nextWeek-now);
+  var wd=Math.floor(wMs/86400000), wh=Math.floor((wMs%86400000)/3600000), wm=Math.floor((wMs%3600000)/60000);
+
+  return {
+    day:'يتجدد بعد '+String(dh).padStart(2,'0')+':'+String(dm).padStart(2,'0')+':'+String(ds).padStart(2,'0'),
+    week:'يتجدد الأسبوع بعد '+wd+'ي '+wh+'س '+wm+'د'
+  };
+}
+
+function renderQuests(){
+  ensureQuestsReset(true);
+  var cd=getResetCountdowns();
+  var canWk=canClaimWeeklyToday();
+  var claimedCnt=save.weekly.claimedDays;
+  var h='<div class="quest-wrap">';
+
+  h+='<div class="q-sec"><div class="q-head"><h3>تسجيل الدخول الأسبوعي</h3><span id="wkTimer" class="q-timer">'+cd.week+'</span></div>';
+  h+='<div class="wk-grid">';
+  for(var i=0;i<WEEKLY_REWARDS.length;i++){
+    var w=WEEKLY_REWARDS[i];
+    var isDone=i<claimedCnt;
+    var isToday=(i===claimedCnt && canWk);
+    var cls='wk-day'+(w.day===7?' d7':'')+(isDone?' done':'')+(isToday?' today':'');
+    var ico=w.k==='g'?gemSVG():coinSVG();
+    var valTxt=w.k==='g'?(w.v+' T'):(w.v+' R');
+    var stTxt=isDone?'تم الاستلام':(isToday?'استلم الآن!':'اليوم '+w.day);
+    h+='<div class="'+cls+'"'+(isToday?' data-act="claimwk" role="button" tabindex="0"':'')+'>'+
+       '<span class="wk-lbl">'+w.label+'</span>'+
+       '<div class="wk-ico">'+ico+'</div>'+
+       '<span class="wk-val">+'+valTxt+'</span>'+
+       '<span class="wk-st">'+stTxt+'</span>'+
+       '</div>';
+  }
+  h+='</div></div>';
+
+  h+='<div class="q-sec"><div class="q-head"><h3>مهمات اليوم (تتجدد يومياً)</h3><span id="dayTimer" class="q-timer">'+cd.day+'</span></div>';
+  h+='<div class="q-list">';
+  for(var j=0;j<save.daily.list.length;j++){
+    var m=save.daily.list[j];
+    var done=m.prog>=m.target;
+    var pct=Math.min(100,Math.round(m.prog/m.target*100));
+    var rwHtml=m.rwK==='g'?(gemSVG()+' '+m.rwV):(coinSVG()+' '+m.rwV);
+    var btnHtml='';
+    if(m.claimed){
+      btnHtml='<button class="btn" type="button" disabled>مُستلمة</button>';
+    } else if(done){
+      btnHtml='<button class="btn gold" type="button" data-act="claimd" data-i="'+j+'">استلام '+rwHtml+'</button>';
+    } else {
+      btnHtml='<button class="btn" type="button" disabled>'+rwHtml+'</button>';
+    }
+    h+='<div class="q-item'+(m.claimed?' claimed':(done?' ready':''))+'">'+
+       '<div class="q-info">'+
+         '<div class="q-top"><b>'+esc(m.title)+'</b><span>'+m.prog+' / '+m.target+'</span></div>'+
+         '<div class="q-bar"><i style="width:'+pct+'%"></i></div>'+
+       '</div>'+
+       btnHtml+
+       '</div>';
+  }
+  h+='</div></div></div>';
+  shopBody.innerHTML=h;
+}
+
+
+/* ---------- 20 Promo Codes System (15 Secret Rare Skins + 5 x 150 T-Gems) ---------- */
+var PROMO_CODES={
+  'RED-DEMON-01':   {type:'char',id:'crimson_demon'},
+  'SKY-THUNDER-02': {type:'char',id:'thunder_lord'},
+  'VOID-KING-03':   {type:'char',id:'void_emperor'},
+  'SUN-PHOENIX-04': {type:'char',id:'solar_phoenix'},
+  'ICE-MONARCH-05': {type:'char',id:'frost_monarch'},
+  'NEON-GHOST-06':  {type:'char',id:'neon_phantom'},
+  'DEEP-DRAGON-07': {type:'char',id:'abyss_dragon'},
+  'STAR-GUARD-08':  {type:'char',id:'star_guardian'},
+  'OMEGA-BOT-09':   {type:'char',id:'omega_titan'},
+  'VIPER-GEM-10':   {type:'char',id:'emerald_viper'},
+  'BLOOD-MOON-11':  {type:'char',id:'blood_moon'},
+  'TIME-LORD-12':   {type:'char',id:'chrono_knight'},
+  'FIRE-CROWN-13':  {type:'char',id:'inferno_king'},
+  'LIGHT-WING-14':  {type:'char',id:'celestial_angel'},
+  'DARK-GOD-15':    {type:'char',id:'obsidian_god'},
+  'GEMS-VIP-150A':  {type:'gems',amount:150},
+  'REDMAN-GEM-150B':{type:'gems',amount:150},
+  'SECRET-T-150C':  {type:'gems',amount:150},
+  'LEGEND-150D':    {type:'gems',amount:150},
+  'ULTRA-GEM-150E': {type:'gems',amount:150}
+};
+var promoInputVal='', promoMsgText='', promoMsgOk=false;
+
+function renderCodes(){
+  var usedCount=(save.usedCodes||[]).length;
+  var h='<div class="promo-box">';
+  h+='<h3>استرداد الأكواد السرية</h3>';
+  h+='<p>أدخل الكود الخاص بك للحصول على شخصيات نادرة وسرية لا تظهر في المتجر أو جواهر T. كل كود يُستخدم مرة واحدة فقط.</p>';
+  h+='<div class="promo-row">';
+  h+='<input id="promoIn" class="fld" type="text" maxlength="24" placeholder="أدخل الكود هنا..." autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" value="'+esc(promoInputVal)+'">';
+  h+='<button class="btn pri" type="button" data-act="redeem">تفعيل</button>';
+  h+='</div>';
+  h+='<div class="promo-msg'+(promoMsgText?(promoMsgOk?' ok':' err'):'')+'">'+esc(promoMsgText)+'</div>';
+  h+='</div>';
+  h+='<div class="empty" style="padding:14px 10px">تم استخدام <b>'+usedCount+'</b> من أصل <b>20</b> كود متاح على هذا الحساب.</div>';
+  shopBody.innerHTML=h;
+}
+
+function redeemCode(){
+  var inp=$('promoIn');
+  var rawCode=(inp?inp.value:promoInputVal)||'';
+  var code=rawCode.trim().toUpperCase();
+  promoInputVal=code;
+  if(!code){
+    promoMsgOk=false;
+    promoMsgText='الرجاء كتابة الكود أولاً.';
+    renderCodes();
+    return;
+  }
+  if(!Array.isArray(save.usedCodes)) save.usedCodes=[];
+  if(save.usedCodes.indexOf(code)>=0){
+    promoMsgOk=false;
+    promoMsgText='لقد استخدمت هذا الكود مسبقاً! لا يمكن استخدام الكود مرتين.';
+    beep(220,140,.18,'sawtooth',.05);
+    renderCodes();
+    return;
+  }
+  var reward=PROMO_CODES[code];
+  if(!reward){
+    promoMsgOk=false;
+    promoMsgText='الكود غير صحيح أو غير صالح.';
+    beep(220,140,.18,'sawtooth',.05);
+    renderCodes();
+    return;
+  }
+  save.usedCodes.push(code);
+  promoInputVal='';
+  if(reward.type==='gems'){
+    save.gems+=reward.amount;
+    persist();
+    updCoins();
+    promoMsgOk=true;
+    promoMsgText='تم تفعيل الكود بنجاح! حصلت على +'+reward.amount+' جوهرة T.';
+    burst(65);
+    beep(700,1200,.16,'triangle',.055);
+    setTimeout(function(){ beep(1000,1500,.2,'triangle',.055); },110);
+    renderCodes();
+  } else if(reward.type==='char'){
+    var ch=charById(reward.id);
+    if(save.owned.indexOf(ch.id)<0) save.owned.push(ch.id);
+    save.sel=ch.id;
+    abState.active=0; abState.cd=0; abState.grace=0;
+    persist();
+    updCoins();
+    promoMsgOk=true;
+    promoMsgText='تم فتح الشخصية السرية النادرة: '+ch.name+'!';
+    renderCodes();
+    showUnlockCelebration(ch);
+  }
+}
+
 function renderShop(){
   updCoins();
-  tabChars.classList.toggle('on',tab==='chars'); tabRew.classList.toggle('on',tab==='rew');
-  tabRank.classList.toggle('on',tab==='rank'); tabAcc.classList.toggle('on',tab==='acc'); tabCode.classList.toggle('on',tab==='code');
+  tabChars.classList.toggle('on',tab==='chars'); tabRew.classList.toggle('on',tab==='rew'); tabCodes.classList.toggle('on',tab==='codes');
+  tabQuests.classList.toggle('on',tab==='quests');
+  tabRank.classList.toggle('on',tab==='rank'); tabAcc.classList.toggle('on',tab==='acc');
+  if(tab==='codes'){ renderCodes(); return; }
+  if(tab==='quests'){ renderQuests(); return; }
   if(tab==='rank'){ renderRank(); return; }
   if(tab==='acc'){ renderAcc(); return; }
-  if(tab==='code'){ renderCode(); return; }
   var h='', best=bestScore();
   if(tab==='chars'){
     if(RM.configured){
@@ -2702,11 +2967,12 @@ function renderShop(){
     }
     h+='<div class="grid">';
     CHARS.forEach(function(ch){
-      if(ch.secret && save.owned.indexOf(ch.id)<0) return;
-      var owned=hasChar(ch.id), loaned=owned&&save.owned.indexOf(ch.id)<0, selected=curId()===ch.id, unlocked=best>=ch.req;
-      h+='<div class="card'+((ch.rare||ch.secret)?' rare':'')+(selected?' sel':'')+((!owned&&!unlocked)?' locked':'')+'">';
-      if(ch.rare) h+='<span class="rare-tag">نادر ★</span>';
-      else if(ch.secret) h+='<span class="rare-tag sec">كود ★</span>';
+      var owned=hasChar(ch.id);
+      if(ch.secret && !owned) return;
+      var loaned=owned&&save.owned.indexOf(ch.id)<0, selected=curId()===ch.id, unlocked=best>=ch.req;
+      h+='<div class="card'+(ch.secret?' secret':(ch.rare?' rare':''))+(selected?' sel':'')+((!owned&&!unlocked)?' locked':'')+'">';
+      if(ch.secret) h+='<span class="secret-tag">سري ★</span>';
+      else if(ch.rare) h+='<span class="rare-tag">نادر ★</span>';
       h+='<canvas class="prev" data-id="'+ch.id+'" data-still="'+((!owned&&!unlocked)?1:0)+'"></canvas><div class="nm">'+ch.name+'</div>';
       if(ch.abLabel) h+='<div class="ab-pill">'+ch.abLabel+'</div>';
       if(owned){
@@ -2761,7 +3027,7 @@ function drawPreviews(){
 var rankData=null, rankLoading=false, rankErr='', myRankN=0;
 var accBusy=false, accMsg='', accOk=false, accUser='', logoutArm=false, logoutT=0;
 var top3={ids:[],mine:false,pos:0,known:false,at:0,queued:null,seq:0};
-function isRareId(id){ var c=charById(id); return !!(c.rare && c.id===id); }
+function isRareId(id){ var c=charById(id); return !!(c.rare && !c.secret && c.id===id); }
 function hasChar(id){ if(save.owned.indexOf(id)>=0) return true; return !!(top3.mine && isRareId(id)); }
 function curId(){ return hasChar(save.sel)?save.sel:'redman'; }
 
@@ -2875,6 +3141,10 @@ function applyCloud(d){
   if(CHARIDS.indexOf(d.avatar)>=0) save.avatar=d.avatar;
   RM.avatar=save.avatar;
   save.inv=Array.isArray(d.inv)?d.inv.filter(validInv).slice(-300):[];
+  if(d.daily&&typeof d.daily==='object') save.daily=d.daily;
+  if(d.weekly&&typeof d.weekly==='object') save.weekly=d.weekly;
+  save.usedCodes=Array.isArray(d.usedCodes)?d.usedCodes.map(function(x){return String(x).toUpperCase();}).slice(0,100):[];
+  ensureQuestsReset(true); updQuestBadges();
   hi=Math.max(0,Math.floor(+d.best||0));
   abState.active=0; abState.cd=0; abState.grace=0;
   try{
@@ -2885,7 +3155,8 @@ function applyCloud(d){
   hiEl.textContent=fmt(hi); updCoins(); updateAbilityHUD(); updHudAvatar();
 }
 function resetLocal(){
-  save.coins=0; save.gems=0; save.owned=['redman']; save.sel='redman'; save.inv=[]; hi=0; save.avatar='redman'; RM.avatar='redman';
+  save.coins=0; save.gems=0; save.owned=['redman']; save.sel='redman'; save.inv=[]; save.daily=null; save.weekly=null; save.usedCodes=[]; hi=0; save.avatar='redman'; RM.avatar='redman';
+  ensureQuestsReset(true); updQuestBadges();
   abState.active=0; abState.cd=0; abState.grace=0;
   try{
     localStorage.setItem('redman-runner-save',JSON.stringify(save));
@@ -3025,35 +3296,6 @@ function renderAcc(){
   }
   shopBody.innerHTML=h; drawAvatars(shopBody);
 }
-var codeMsg='', codeOk=false, codeVal='';
-function normCode(v){ return String(v||'').toUpperCase().replace(/[^A-Z0-9]/g,''); }
-function renderCode(){
-  var n=0;
-  CHARS.forEach(function(c){ if(c.secret && save.owned.indexOf(c.id)>=0) n++; });
-  shopBody.innerHTML='<div class="acc-form"><h3>إدخال الكود</h3>'+
-    '<p>أدخل كوداً سرياً لتحصل على سكن خاص بمهارة فريدة. السكنات السرية لا تُباع في المتجر.</p>'+
-    '<input id="codeIn" class="fld codein" type="text" maxlength="24" placeholder="اكتب الكود هنا" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" value="'+esc(codeVal)+'">'+
-    '<div class="msg'+(codeOk?' ok':'')+'">'+esc(codeMsg)+'</div>'+
-    '<button class="btn pri" type="button" data-act="redeem">تفعيل الكود</button>'+
-    '<p>السكنات المفتوحة بالأكواد: '+n+' / 10</p></div>';
-}
-function doRedeem(){
-  var el=$('codeIn');
-  codeVal=el?el.value:codeVal;
-  var v=normCode(codeVal);
-  codeOk=false;
-  if(!v){ codeMsg='اكتب الكود أولاً'; renderCode(); return; }
-  var id=SECRET_CODES[v];
-  if(!id){ codeMsg='الكود غير صحيح'; beep(240,120,.2,'sawtooth',.05); renderCode(); return; }
-  var ch=charById(id);
-  if(save.owned.indexOf(id)>=0){ codeMsg='تملك سكن «'+ch.name+'» بالفعل'; renderCode(); return; }
-  save.owned.push(id); save.sel=id;
-  abState.active=0; abState.cd=0; abState.grace=0;
-  persist();
-  codeOk=true; codeMsg='تم تفعيل الكود: '+ch.name; codeVal='';
-  updCoins(); renderCode();
-  showUnlockCelebration(ch);
-}
 function goTab(t){
   tab=t;
   if(t==='rank'){ rankErr=''; loadRank(); }
@@ -3075,14 +3317,14 @@ shopBody.addEventListener('click',function(e){
   else if(act==='goacc') goTab('acc');
   else if(act==='rkgo') goTab('rank');
   else if(act==='setav') setAvatar(b.getAttribute('data-id'));
-  else if(act==='redeem') doRedeem();
+  else if(act==='redeem') redeemCode();
 });
-shopBody.addEventListener('input',function(e){ if(!e.target) return; if(e.target.id==='accU') accUser=e.target.value; else if(e.target.id==='codeIn') codeVal=e.target.value; });
+shopBody.addEventListener('input',function(e){ if(e.target && e.target.id==='accU') accUser=e.target.value; else if(e.target && e.target.id==='promoIn') promoInputVal=e.target.value; });
 shopBody.addEventListener('keydown',function(e){
   if(e.key!=='Enter' || !e.target) return;
   if(e.target.id==='accU'){ e.preventDefault(); var p=$('accP'); if(p) p.focus(); }
   else if(e.target.id==='accP'){ e.preventDefault(); doAuth('login'); }
-  else if(e.target.id==='codeIn'){ e.preventDefault(); doRedeem(); }
+  else if(e.target.id==='promoIn'){ e.preventDefault(); redeemCode(); }
 });
 
 function openShop(t){
@@ -3098,6 +3340,49 @@ function closeShop(){
   updateAbilityHUD();
 }
 shopBody.addEventListener('click',function(e){
+  var qEl=e.target.closest?e.target.closest('[data-act="claimwk"],[data-act="claimd"]'):null;
+  if(qEl && !qEl.disabled && !claimingLock){
+    var qAct=qEl.getAttribute('data-act');
+    if(qAct==='claimwk' && canClaimWeeklyToday()){
+      var rw=WEEKLY_REWARDS[save.weekly.claimedDays];
+      save.weekly.claimedDays++;
+      save.weekly.lastClaimDate=getDayKey();
+      if(rw.k==='g'){
+        save.gems+=rw.v; persist(); updCoins(); updQuestBadges();
+        burst(55); beep(700,1200,.16,'triangle',.055);
+        renderShop();
+      } else {
+        claimingLock=true;
+        var prevW=save.coins;
+        save.coins+=rw.v; persist(); updCoins(true); updQuestBadges();
+        launchExchangeCoins(qEl,rw.v,prevW,save.coins,function(){
+          claimingLock=false;
+          if(shopOpen) renderShop();
+        });
+      }
+      return;
+    } else if(qAct==='claimd'){
+      var idx=parseInt(qEl.getAttribute('data-i'),10);
+      var m=save.daily&&save.daily.list?save.daily.list[idx]:null;
+      if(m && !m.claimed && m.prog>=m.target){
+        m.claimed=true;
+        if(m.rwK==='g'){
+          save.gems+=m.rwV; persist(); updCoins(); updQuestBadges();
+          burst(45); beep(700,1150,.15,'triangle',.05);
+          renderShop();
+        } else {
+          claimingLock=true;
+          var prevD=save.coins;
+          save.coins+=m.rwV; persist(); updCoins(true); updQuestBadges();
+          launchExchangeCoins(qEl,m.rwV,prevD,save.coins,function(){
+            claimingLock=false;
+            if(shopOpen) renderShop();
+          });
+        }
+      }
+      return;
+    }
+  }
   var b=e.target.closest?e.target.closest('button[data-act]'):null;
   if(!b || b.disabled || claimingLock) return;
   var act=b.getAttribute('data-act'), id=b.getAttribute('data-id');
@@ -3171,9 +3456,24 @@ shopBody.addEventListener('click',function(e){
 });
 tabChars.addEventListener('click',function(){ if(claimingLock) return; tab='chars'; renderShop(); });
 tabRew.addEventListener('click',function(){ if(claimingLock) return; tab='rew'; renderShop(); });
+tabCodes.addEventListener('click',function(){ if(claimingLock) return; promoMsgText=''; tab='codes'; renderShop(); });
+tabQuests.addEventListener('click',function(){ if(claimingLock) return; tab='quests'; renderShop(); });
+questBtn.addEventListener('click',function(){ openShop('quests'); });
+var openQuestsBtns=document.querySelectorAll('.openQuests');
+for(var qi=0;qi<openQuestsBtns.length;qi++){
+  openQuestsBtns[qi].addEventListener('click',function(){ openShop('quests'); });
+}
+setInterval(function(){
+  ensureQuestsReset(false);
+  if(shopOpen && tab==='quests'){
+    var cd=getResetCountdowns();
+    var dtEl=$('dayTimer'), wtEl=$('wkTimer');
+    if(dtEl) dtEl.textContent=cd.day;
+    if(wtEl) wtEl.textContent=cd.week;
+  }
+},1000);
 tabRank.addEventListener('click',function(){ if(claimingLock) return; goTab('rank'); });
 tabAcc.addEventListener('click',function(){ if(claimingLock) return; goTab('acc'); });
-tabCode.addEventListener('click',function(){ if(claimingLock) return; goTab('code'); });
 accBtn.addEventListener('click',function(){ openShop('acc'); });
 $('shopClose').addEventListener('click',closeShop);
 shopEl.addEventListener('click',function(e){ if(e.target===shopEl) closeShop(); });
@@ -3184,10 +3484,6 @@ for(var oi=0;oi<opens.length;oi++){
 var openRanks=document.querySelectorAll('.openRank');
 for(var ri2=0;ri2<openRanks.length;ri2++){
   openRanks[ri2].addEventListener('click',function(){ openShop('rank'); });
-}
-var openCodes=document.querySelectorAll('.openCode');
-for(var oc2=0;oc2<openCodes.length;oc2++){
-  openCodes[oc2].addEventListener('click',function(){ openShop('code'); });
 }
 var firstAuth=true;
 if(window.RM){
@@ -3301,15 +3597,96 @@ if(stage.requestFullscreen || stage.webkitRequestFullscreen){
 } else { fsBtn.hidden=true; }
 document.addEventListener('fullscreenchange',function(){ setTimeout(resize,60); });
 
-/* ---------- Boot ---------- */
+/* ---------- Boot & Loading Screen ---------- */
+var LD_TIPS=[
+  'نصيحة: اجمع جائزة كل 500 نقطة واستبدلها بعملات R في المتجر!',
+  'نصيحة: تحصل على جوهرة T نادرة عند كل 1500 نقطة لفتح الشخصيات الأسطورية.',
+  'نصيحة: يتغير الجو والخلفية وكلمة REDMAN تلقائياً كل 1500 نقطة!',
+  'نصيحة: تفقد قائمة المهمات يومياً للحصول على مكافآت إضافية مجانية.',
+  'نصيحة: أصحاب المراكز الثلاثة الأولى في الترتيب العالمي يحصلون على الشخصيات النادرة مجاناً!'
+];
+var bootDone=false, ldProg=0, ldTarget=18, ldFontsOk=false, ldStartT=performance.now();
+if(ldTip) ldTip.textContent=LD_TIPS[(Math.random()*LD_TIPS.length)|0];
+
+function drawLoaderRunner(tSec){
+  if(!ldCv || bootDone) return;
+  var w=84, h=86, d=Math.min(window.devicePixelRatio||1,2);
+  if(ldCv.width!==Math.round(w*d) || ldCv.height!==Math.round(h*d)){
+    ldCv.width=Math.round(w*d); ldCv.height=Math.round(h*d);
+  }
+  var c=ldCv.getContext('2d');
+  c.setTransform(d,0,0,d,0,0);
+  c.clearRect(0,0,w,h);
+  c.fillStyle='rgba(255,42,42,.18)';
+  c.beginPath(); c.ellipse(42,78,24,3.5,0,0,6.283); c.fill();
+  drawChar(c,curId(),42,76,1.02,tSec,'run',false);
+}
+
+function setLoaderUI(p,txt){
+  var v=Math.max(0,Math.min(100,Math.round(p)));
+  if(ldFill) ldFill.style.width=v+'%';
+  if(ldPct) ldPct.textContent=v+'%';
+  if(txt && ldStatus) ldStatus.textContent=txt;
+}
+
+function finishBootLoader(){
+  if(bootDone) return;
+  bootDone=true;
+  setLoaderUI(100,'جاهز للانطلاق!');
+  setTimeout(function(){
+    if(bootLoader) bootLoader.classList.add('hide');
+    startIntro();
+    setTimeout(function(){
+      if(bootLoader && bootLoader.parentNode) bootLoader.parentNode.removeChild(bootLoader);
+    },600);
+  },220);
+}
+
 hiEl.textContent=fmt(hi);
+ensureQuestsReset(true);
+updQuestBadges();
 updCoins();
 resize();
 man.y=groundY;
+
 if(document.fonts && document.fonts.load){
-  document.fonts.load('40px "Bebas Neue"').then(function(){ try{ buildWord(); }catch(err){} startIntro(); }).catch(function(){ startIntro(); });
-  setTimeout(function(){ startIntro(); },1500);
-} else { startIntro(); }
+  Promise.all([
+    document.fonts.load('40px "Bebas Neue"').catch(function(){}),
+    document.fonts.load('700 16px "Cairo"').catch(function(){})
+  ]).then(function(){
+    try{ buildWord(); }catch(err){}
+    ldFontsOk=true;
+  });
+} else {
+  ldFontsOk=true;
+}
+
+(function runBootLoader(now){
+  if(bootDone) return;
+  var elapsed=now-ldStartT;
+  if(elapsed<350){
+    ldTarget=35;
+    if(ldStatus) ldStatus.textContent='جارٍ تهيئة عالم اللعبة...';
+  } else if(elapsed<850){
+    ldTarget=68;
+    if(ldStatus) ldStatus.textContent='جارٍ تحميل الخطوط والشخصيات...';
+  } else if(elapsed<1350 || (!ldFontsOk && elapsed<2400)){
+    ldTarget=92;
+    if(ldStatus) ldStatus.textContent='جارٍ تجهيز المسار والمؤثرات...';
+  } else {
+    ldTarget=100;
+  }
+  ldProg+=(ldTarget-ldProg)*0.16;
+  if(ldTarget===100 && ldProg>98.5) ldProg=100;
+  setLoaderUI(ldProg);
+  drawLoaderRunner(now/1000);
+  if(ldProg>=100){
+    finishBootLoader();
+  } else {
+    requestAnimationFrame(runBootLoader);
+  }
+})(performance.now());
+
 requestAnimationFrame(frame);
 try{ if(!errShown){ var eb=$('err'); if(eb) eb.hidden=true; } }catch(err){}
 })();
